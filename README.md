@@ -1,1 +1,1 @@
-for blog
+for blog.

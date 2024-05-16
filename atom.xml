@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-05-16T05:19:19.938Z</updated>
+  <updated>2024-05-16T09:07:20.142Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2024/05/16/git_proxy/"/>
     <id>http://example.com/2024/05/16/git_proxy/</id>
     <published>2024-05-16T13:17:10.000Z</published>
-    <updated>2024-05-16T05:19:19.938Z</updated>
+    <updated>2024-05-16T09:07:20.142Z</updated>
     
     <content type="html"><![CDATA[<ol><li><p>先找到全局代理端口 一般为 7890</p></li><li><p>执行代理命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># http ｜ https</span></span><br><span class="line">git config --global http.proxy 127.0.0.1:7890</span><br><span class="line">git config --global https.proxy 127.0.0.1:7890</span><br><span class="line"><span class="comment">#socks5代理</span></span><br><span class="line">git config --global http.proxy socks5 127.0.0.1:7890</span><br><span class="line">git config --global https.proxy socks5 127.0.0.1:7890</span><br><span class="line"><span class="comment">#关闭代理</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br></pre></td></tr></table></figure></li></ol>]]></content>
     

@@ -4,9 +4,9 @@ http://example.com/2024/05/16/git_proxy/
 http://example.com/2024/05/15/deployblogbyhexo/
 http://example.com/404.html
 http://example.com/
-http://example.com/tags/proxy/
-http://example.com/tags/git/
 http://example.com/tags/github/
 http://example.com/tags/blog/
-http://example.com/categories/%E5%A7%BF%E5%8A%BF/
+http://example.com/tags/proxy/
+http://example.com/tags/git/
 http://example.com/categories/%E6%95%99%E7%A8%8B/
+http://example.com/categories/%E5%A7%BF%E5%8A%BF/

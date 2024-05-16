@@ -2,26 +2,49 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>旅行手记</title>
   
-  
+  <subtitle>逐风之旅</subtitle>
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-05-15T05:11:23.679Z</updated>
+  <updated>2024-05-16T05:19:19.938Z</updated>
   <id>http://example.com/</id>
   
   <author>
-    <name>fatwang1</name>
+    <name>衣云乘风</name>
     
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>git走全局代理</title>
+    <link href="http://example.com/2024/05/16/git_proxy/"/>
+    <id>http://example.com/2024/05/16/git_proxy/</id>
+    <published>2024-05-16T13:17:10.000Z</published>
+    <updated>2024-05-16T05:19:19.938Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li><p>先找到全局代理端口 一般为 7890</p></li><li><p>执行代理命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># http ｜ https</span></span><br><span class="line">git config --global http.proxy 127.0.0.1:7890</span><br><span class="line">git config --global https.proxy 127.0.0.1:7890</span><br><span class="line"><span class="comment">#socks5代理</span></span><br><span class="line">git config --global http.proxy socks5 127.0.0.1:7890</span><br><span class="line">git config --global https.proxy socks5 127.0.0.1:7890</span><br><span class="line"><span class="comment">#关闭代理</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    
+    <summary type="html">git 全局代理</summary>
+    
+    
+    
+    <category term="姿势" scheme="http://example.com/categories/%E5%A7%BF%E5%8A%BF/"/>
+    
+    
+    <category term="proxy" scheme="http://example.com/tags/proxy/"/>
+    
+    <category term="git" scheme="http://example.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用hexo部署博客</title>
-    <link href="http://example.com/2020/02/24/deployblogbyhexo/"/>
-    <id>http://example.com/2020/02/24/deployblogbyhexo/</id>
-    <published>2020-02-23T22:55:10.000Z</published>
-    <updated>2024-05-15T05:11:23.679Z</updated>
+    <link href="http://example.com/2024/05/15/deployblogbyhexo/"/>
+    <id>http://example.com/2024/05/15/deployblogbyhexo/</id>
+    <published>2024-05-14T22:55:10.000Z</published>
+    <updated>2024-05-16T05:16:42.601Z</updated>
     
     <content type="html"><![CDATA[<p>可以参考<a href="https://zhuanlan.zhihu.com/p/667089756">hexo&amp;github 搭建博客（保姆级）</a></p>]]></content>
     
@@ -34,6 +57,8 @@
     
     
     <category term="github" scheme="http://example.com/tags/github/"/>
+    
+    <category term="blog" scheme="http://example.com/tags/blog/"/>
     
   </entry>
   

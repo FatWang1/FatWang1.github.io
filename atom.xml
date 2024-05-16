@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-05-16T09:07:20.142Z</updated>
+  <updated>2024-05-16T09:50:56.877Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,69 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>linux串口通信 接收信息不完整 读取不全</title>
+    <link href="http://example.com/2024/05/17/2024051602/"/>
+    <id>http://example.com/2024/05/17/2024051602/</id>
+    <published>2024-05-16T17:50:10.000Z</published>
+    <updated>2024-05-16T09:50:56.877Z</updated>
+    
+    <content type="html"><![CDATA[<p>类似这种 ready.o是我用来读取串口信息的一个程序 执行结果如下：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost testPlc]# ./ready.o </span><br><span class="line">0       02</span><br><span class="line">1       30</span><br><span class="line">2       30</span><br><span class="line">3       46</span><br><span class="line">4       46</span><br><span class="line">5       31</span><br><span class="line">6       03</span><br><span class="line">7       32</span><br><span class="line">8       bd</span><br></pre></td></tr></table></figure><p>按照通信协议，串口应返回的的是</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">0       02</span><br><span class="line">1       30</span><br><span class="line">2       30</span><br><span class="line">3       46</span><br><span class="line">4       46</span><br><span class="line">5       31</span><br><span class="line">6       03</span><br><span class="line">7       32</span><br><span class="line">8       31</span><br><span class="line">9       38</span><br></pre></td></tr></table></figure><p>并且其他几个指令，也是与通信协议所要求的返回的位数不同，并且最后一位也有是错误的，使用串口助手有没有问题。所以推测是接收区只有8位，然后代码里的接收buffer设置为128，所以应该是底层的原因，所以采用了select进行等待，最终实现了完整读取串口信息<br>代码示例：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">SetBench</span><span class="params">(<span class="type">unsigned</span> <span class="type">char</span> *msg, <span class="type">unsigned</span> <span class="type">char</span> *recv)</span> &#123;</span><br><span class="line">    fd_set fs_read;</span><br><span class="line">    <span class="type">int</span> fd = nFd;</span><br><span class="line"><span class="comment">//nFd是串口句柄</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> buf[<span class="number">16</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">time</span>;</span></span><br><span class="line">    FD_ZERO(&amp;fs_read);</span><br><span class="line">    FD_SET(fd, &amp;fs_read);</span><br><span class="line"></span><br><span class="line">    time.tv_sec = <span class="number">2</span>;</span><br><span class="line">    time.tv_usec = <span class="number">0</span>;</span><br><span class="line">    write(fd, msg, <span class="built_in">strlen</span>(msg));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (select(fd + <span class="number">1</span>, &amp;fs_read, <span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;time) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        len = read(fd, buf, <span class="keyword">sizeof</span>(recv));</span><br><span class="line">        <span class="keyword">if</span> (<span class="number">8</span> == len) &#123;</span><br><span class="line">            <span class="built_in">strncpy</span>(recv + count, buf, <span class="number">8</span>);</span><br><span class="line">            count += <span class="number">8</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (len &gt; <span class="number">0</span> &amp;&amp; len &lt; <span class="number">8</span>) &#123;</span><br><span class="line">            <span class="built_in">strncpy</span>(recv + count, buf, len);</span><br><span class="line">            count += len;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;类似这种 ready.o是我用来读取串口信息的一个程序 执行结果如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br</summary>
+      
+    
+    
+    
+    <category term="异常" scheme="http://example.com/categories/%E5%BC%82%E5%B8%B8/"/>
+    
+    
+    <category term="linux" scheme="http://example.com/tags/linux/"/>
+    
+    <category term="串口通信" scheme="http://example.com/tags/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/"/>
+    
+    <category term="c++" scheme="http://example.com/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sed: -e expression #1, char 0: no previous regular expression</title>
+    <link href="http://example.com/2024/05/16/2024051601/"/>
+    <id>http://example.com/2024/05/16/2024051601/</id>
+    <published>2024-05-16T15:17:10.000Z</published>
+    <updated>2024-05-16T09:51:02.885Z</updated>
+    
+    <content type="html"><![CDATA[<p>执行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i -e <span class="string">&quot;s/<span class="variable">$ori</span>/<span class="variable">$curr</span>/g&quot;</span> <span class="variable">$CONF</span></span><br></pre></td></tr></table></figure><p>报错 <code>sed: -e expression #1, char 0: no previous regular expression</code></p><p>是因为 <code>$ori</code> 为空</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;执行&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;</summary>
+      
+    
+    
+    
+    <category term="异常" scheme="http://example.com/categories/%E5%BC%82%E5%B8%B8/"/>
+    
+    
+    <category term="sed" scheme="http://example.com/tags/sed/"/>
+    
+    <category term="linux" scheme="http://example.com/tags/linux/"/>
+    
+    <category term="shell" scheme="http://example.com/tags/shell/"/>
+    
+  </entry>
+  
+  <entry>
     <title>git走全局代理</title>
-    <link href="http://example.com/2024/05/16/git_proxy/"/>
-    <id>http://example.com/2024/05/16/git_proxy/</id>
+    <link href="http://example.com/2024/05/16/2024051600/"/>
+    <id>http://example.com/2024/05/16/2024051600/</id>
     <published>2024-05-16T13:17:10.000Z</published>
-    <updated>2024-05-16T09:07:20.142Z</updated>
+    <updated>2024-05-16T09:48:32.854Z</updated>
     
     <content type="html"><![CDATA[<ol><li><p>先找到全局代理端口 一般为 7890</p></li><li><p>执行代理命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># http ｜ https</span></span><br><span class="line">git config --global http.proxy 127.0.0.1:7890</span><br><span class="line">git config --global https.proxy 127.0.0.1:7890</span><br><span class="line"><span class="comment">#socks5代理</span></span><br><span class="line">git config --global http.proxy socks5 127.0.0.1:7890</span><br><span class="line">git config --global https.proxy socks5 127.0.0.1:7890</span><br><span class="line"><span class="comment">#关闭代理</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br></pre></td></tr></table></figure></li></ol>]]></content>
     
@@ -30,7 +88,7 @@
     
     
     
-    <category term="姿势" scheme="http://example.com/categories/%E5%A7%BF%E5%8A%BF/"/>
+    <category term="教程" scheme="http://example.com/categories/%E6%95%99%E7%A8%8B/"/>
     
     
     <category term="proxy" scheme="http://example.com/tags/proxy/"/>
@@ -41,10 +99,10 @@
   
   <entry>
     <title>使用hexo部署博客</title>
-    <link href="http://example.com/2024/05/15/deployblogbyhexo/"/>
-    <id>http://example.com/2024/05/15/deployblogbyhexo/</id>
+    <link href="http://example.com/2024/05/15/2024051500/"/>
+    <id>http://example.com/2024/05/15/2024051500/</id>
     <published>2024-05-14T22:55:10.000Z</published>
-    <updated>2024-05-16T05:16:42.601Z</updated>
+    <updated>2024-05-16T09:44:52.178Z</updated>
     
     <content type="html"><![CDATA[<p>可以参考<a href="https://zhuanlan.zhihu.com/p/667089756">hexo&amp;github 搭建博客（保姆级）</a></p>]]></content>
     

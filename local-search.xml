@@ -1,123 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>旅行手记</title>
+<search>
   
-  <subtitle>逐风之旅</subtitle>
-  <link href="https://fatwang1.github.io/atom.xml" rel="self"/>
   
-  <link href="https://fatwang1.github.io/"/>
-  <updated>2024-05-16T09:50:56.877Z</updated>
-  <id>https://fatwang1.github.io/</id>
-  
-  <author>
-    <name>衣云乘风</name>
-    
-  </author>
-  
-  <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
     <title>linux串口通信 接收信息不完整 读取不全</title>
-    <link href="https://fatwang1.github.io/2024/05/17/2024051602/"/>
-    <id>https://fatwang1.github.io/2024/05/17/2024051602/</id>
-    <published>2024-05-16T17:50:10.000Z</published>
-    <updated>2024-05-16T09:50:56.877Z</updated>
+    <link href="/2024/05/17/2024051602/"/>
+    <url>/2024/05/17/2024051602/</url>
     
     <content type="html"><![CDATA[<p>类似这种 ready.o是我用来读取串口信息的一个程序 执行结果如下：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell">[root@localhost testPlc]# ./ready.o <br>0       02<br>1       30<br>2       30<br>3       46<br>4       46<br>5       31<br>6       03<br>7       32<br>8       bd<br></code></pre></td></tr></table></figure><p>按照通信协议，串口应返回的的是</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell">0       02<br>1       30<br>2       30<br>3       46<br>4       46<br>5       31<br>6       03<br>7       32<br>8       31<br>9       38<br></code></pre></td></tr></table></figure><p>并且其他几个指令，也是与通信协议所要求的返回的位数不同，并且最后一位也有是错误的，使用串口助手有没有问题。所以推测是接收区只有8位，然后代码里的接收buffer设置为128，所以应该是底层的原因，所以采用了select进行等待，最终实现了完整读取串口信息<br>代码示例：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">SetBench</span><span class="hljs-params">(<span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *msg, <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> *recv)</span> &#123;<br>    fd_set fs_read;<br>    <span class="hljs-type">int</span> fd = nFd;<br><span class="hljs-comment">//nFd是串口句柄</span><br>    <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> buf[<span class="hljs-number">16</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">timeval</span> <span class="hljs-title">time</span>;</span><br>    FD_ZERO(&amp;fs_read);<br>    FD_SET(fd, &amp;fs_read);<br><br>    time.tv_sec = <span class="hljs-number">2</span>;<br>    time.tv_usec = <span class="hljs-number">0</span>;<br>    write(fd, msg, <span class="hljs-built_in">strlen</span>(msg));<br><br>    <span class="hljs-keyword">while</span> (select(fd + <span class="hljs-number">1</span>, &amp;fs_read, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, &amp;time) &gt; <span class="hljs-number">0</span>) &#123;<br>        len = read(fd, buf, <span class="hljs-keyword">sizeof</span>(recv));<br>        <span class="hljs-keyword">if</span> (<span class="hljs-number">8</span> == len) &#123;<br>            <span class="hljs-built_in">strncpy</span>(recv + count, buf, <span class="hljs-number">8</span>);<br>            count += <span class="hljs-number">8</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (len &gt; <span class="hljs-number">0</span> &amp;&amp; len &lt; <span class="hljs-number">8</span>) &#123;<br>            <span class="hljs-built_in">strncpy</span>(recv + count, buf, len);<br>            count += len;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
     
     
+    <categories>
       
+      <category>异常</category>
       
-    <summary type="html">&lt;p&gt;类似这种 ready.o是我用来读取串口信息的一个程序 执行结果如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br</summary>
+    </categories>
+    
+    
+    <tags>
       
-    
-    
-    
-    <category term="异常" scheme="https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
-    
-    
-    <category term="串口通信" scheme="https://fatwang1.github.io/tags/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/"/>
-    
-    <category term="linux" scheme="https://fatwang1.github.io/tags/linux/"/>
-    
-    <category term="c++" scheme="https://fatwang1.github.io/tags/c/"/>
+      <tag>串口通信</tag>
+      
+      <tag>linux</tag>
+      
+      <tag>c++</tag>
+      
+    </tags>
     
   </entry>
   
+  
+  
   <entry>
     <title>sed: -e expression #1, char 0: no previous regular expression</title>
-    <link href="https://fatwang1.github.io/2024/05/16/2024051601/"/>
-    <id>https://fatwang1.github.io/2024/05/16/2024051601/</id>
-    <published>2024-05-16T15:17:10.000Z</published>
-    <updated>2024-05-16T09:51:02.885Z</updated>
+    <link href="/2024/05/16/2024051601/"/>
+    <url>/2024/05/16/2024051601/</url>
     
     <content type="html"><![CDATA[<p>执行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sed -i -e <span class="hljs-string">&quot;s/<span class="hljs-variable">$ori</span>/<span class="hljs-variable">$curr</span>/g&quot;</span> <span class="hljs-variable">$CONF</span><br></code></pre></td></tr></table></figure><p>报错 <code>sed: -e expression #1, char 0: no previous regular expression</code></p><p>是因为 <code>$ori</code> 为空</p>]]></content>
     
     
+    <categories>
       
+      <category>异常</category>
       
-    <summary type="html">&lt;p&gt;执行&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;</summary>
+    </categories>
+    
+    
+    <tags>
       
-    
-    
-    
-    <category term="异常" scheme="https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
-    
-    
-    <category term="linux" scheme="https://fatwang1.github.io/tags/linux/"/>
-    
-    <category term="sed" scheme="https://fatwang1.github.io/tags/sed/"/>
-    
-    <category term="shell" scheme="https://fatwang1.github.io/tags/shell/"/>
+      <tag>linux</tag>
+      
+      <tag>sed</tag>
+      
+      <tag>shell</tag>
+      
+    </tags>
     
   </entry>
   
+  
+  
   <entry>
     <title>git走全局代理</title>
-    <link href="https://fatwang1.github.io/2024/05/16/2024051600/"/>
-    <id>https://fatwang1.github.io/2024/05/16/2024051600/</id>
-    <published>2024-05-16T13:17:10.000Z</published>
-    <updated>2024-05-16T09:48:32.854Z</updated>
+    <link href="/2024/05/16/2024051600/"/>
+    <url>/2024/05/16/2024051600/</url>
     
     <content type="html"><![CDATA[<ol><li><p>先找到全局代理端口 一般为 7890</p></li><li><p>执行代理命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># http ｜ https</span><br>git config --global http.proxy 127.0.0.1:7890<br>git config --global https.proxy 127.0.0.1:7890<br><span class="hljs-comment">#socks5代理</span><br>git config --global http.proxy socks5 127.0.0.1:7890<br>git config --global https.proxy socks5 127.0.0.1:7890<br><span class="hljs-comment">#关闭代理</span><br>git config --global --<span class="hljs-built_in">unset</span> http.proxy<br></code></pre></td></tr></table></figure></li></ol>]]></content>
     
     
-    <summary type="html">git 全局代理</summary>
+    <categories>
+      
+      <category>教程</category>
+      
+    </categories>
     
     
-    
-    <category term="教程" scheme="https://fatwang1.github.io/categories/%E6%95%99%E7%A8%8B/"/>
-    
-    
-    <category term="proxy" scheme="https://fatwang1.github.io/tags/proxy/"/>
-    
-    <category term="git" scheme="https://fatwang1.github.io/tags/git/"/>
+    <tags>
+      
+      <tag>proxy</tag>
+      
+      <tag>git</tag>
+      
+    </tags>
     
   </entry>
   
+  
+  
   <entry>
     <title>使用hexo部署博客</title>
-    <link href="https://fatwang1.github.io/2024/05/15/2024051500/"/>
-    <id>https://fatwang1.github.io/2024/05/15/2024051500/</id>
-    <published>2024-05-14T22:55:10.000Z</published>
-    <updated>2024-05-16T09:57:41.286Z</updated>
+    <link href="/2024/05/15/2024051500/"/>
+    <url>/2024/05/15/2024051500/</url>
     
     <content type="html"><![CDATA[<p>可以参考<a href="https://zhuanlan.zhihu.com/p/667089756">hexo&amp;github 搭建博客（保姆级）</a></p>]]></content>
     
     
-    <summary type="html">博客部署</summary>
+    <categories>
+      
+      <category>教程</category>
+      
+    </categories>
     
     
-    
-    <category term="教程" scheme="https://fatwang1.github.io/categories/%E6%95%99%E7%A8%8B/"/>
-    
-    
-    <category term="github" scheme="https://fatwang1.github.io/tags/github/"/>
-    
-    <category term="blog" scheme="https://fatwang1.github.io/tags/blog/"/>
+    <tags>
+      
+      <tag>github</tag>
+      
+      <tag>blog</tag>
+      
+    </tags>
     
   </entry>
   
-</feed>
+  
+  
+  
+</search>

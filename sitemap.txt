@@ -1,3 +1,4 @@
+https://fatwang1.github.io/2024/05/30/2024053001/
 https://fatwang1.github.io/2024/05/30/2024053000/
 https://fatwang1.github.io/about/index.html
 https://fatwang1.github.io/2024/05/15/2024051500/
@@ -14,10 +15,12 @@ https://fatwang1.github.io/tags/c/
 https://fatwang1.github.io/tags/github/
 https://fatwang1.github.io/tags/golang/
 https://fatwang1.github.io/tags/go-modules/
-https://fatwang1.github.io/tags/blog/
-https://fatwang1.github.io/tags/sed/
-https://fatwang1.github.io/tags/shell/
+https://fatwang1.github.io/tags/devops/
+https://fatwang1.github.io/tags/terraform/
 https://fatwang1.github.io/tags/proxy/
 https://fatwang1.github.io/tags/git/
+https://fatwang1.github.io/tags/sed/
+https://fatwang1.github.io/tags/shell/
+https://fatwang1.github.io/tags/blog/
 https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/
 https://fatwang1.github.io/categories/%E6%95%99%E7%A8%8B/

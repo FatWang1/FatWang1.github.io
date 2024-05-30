@@ -6,7 +6,7 @@
   <link href="https://fatwang1.github.io/atom.xml" rel="self"/>
   
   <link href="https://fatwang1.github.io/"/>
-  <updated>2024-05-30T01:43:41.448Z</updated>
+  <updated>2024-05-30T05:23:04.309Z</updated>
   <id>https://fatwang1.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>terraform实践</title>
+    <link href="https://fatwang1.github.io/2024/05/30/2024053001/"/>
+    <id>https://fatwang1.github.io/2024/05/30/2024053001/</id>
+    <published>2024-05-30T09:52:55.000Z</published>
+    <updated>2024-05-30T05:23:04.309Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><h3 id="选型对比"><a href="#选型对比" class="headerlink" title="选型对比"></a>选型对比</h3></li></ul><p>之前现场需要做云上资源的运维，然后客户需要一个可靠的运维方案，经过粗筛最终决定在<code>terraform</code>和<code>ansible</code>中进行抉择。</p><table><thead><tr><th>特性</th><th>Terraform</th><th>Ansible</th></tr></thead><tbody><tr><td><strong>主要用途</strong></td><td>声明式基础设施管理，资源创建和更新</td><td>配置管理，应用部署，自动化任务</td></tr><tr><td><strong>语法</strong></td><td>HCL (HashiCorp Configuration Language) 或 JSON</td><td>YAML</td></tr><tr><td><strong>执行模型</strong></td><td>中心化的声明式，资源状态管理</td><td>分布式的任务驱动，基于事件</td></tr><tr><td><strong>资源管理</strong></td><td>明确的资源创建、更新和删除</td><td>主要关注配置状态，不直接管理资源生命周期</td></tr><tr><td><strong>多云支持</strong></td><td>广泛支持，跨平台，多云友好</td><td>支持多种云，但更侧重于本地和私有云</td></tr><tr><td><strong>依赖管理</strong></td><td>内建依赖解析，自动排序资源应用</td><td>需要手动管理依赖关系</td></tr><tr><td><strong>变更管理</strong></td><td><code>terraform plan</code> 预先查看变更，<code>apply</code> 应用变更</td><td>通过playbook执行，没有预览变更的功能</td></tr><tr><td><strong>执行方式</strong></td><td>通过命令行工具执行，需要安装Terraform CLI</td><td>通过playbook执行，通常通过Ansible Tower或SSH</td></tr><tr><td><strong>无代理部署</strong></td><td>不需要目标主机上的代理</td><td>需要在目标主机上安装Agent或使用SSH</td></tr><tr><td><strong>安全性</strong></td><td>支持访问控制，如Terraform Cloud</td><td>支持加密凭据，但需要额外的管理</td></tr><tr><td><strong>社区支持</strong></td><td>活跃的社区，丰富的模块和插件</td><td>广泛的社区，丰富的角色和模块</td></tr></tbody></table><p>对比下来，<code>terraform</code>可以对变更进行预览，也能直接管理资源，故选择<code>terraform</code>。</p><ul><li><h3 id="terraform-简述"><a href="#terraform-简述" class="headerlink" title="terraform 简述"></a>terraform 简述</h3></li></ul><p>terraform 主要是</p><p><img src="/.io//assets.avif" alt="Terraform deployment workflow"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;h3 id=&quot;选型对比&quot;&gt;&lt;a href=&quot;#选型对比&quot; class=&quot;headerlink&quot; title=&quot;选型对比&quot;&gt;&lt;/a&gt;选型对比&lt;/h3&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;之前现场需要做云上资源的运维，然后客户需要一个可靠的运维方案，经过粗筛最终决定在&lt;</summary>
+      
+    
+    
+    
+    <category term="教程" scheme="https://fatwang1.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="devops" scheme="https://fatwang1.github.io/tags/devops/"/>
+    
+    <category term="terraform" scheme="https://fatwang1.github.io/tags/terraform/"/>
+    
+  </entry>
   
   <entry>
     <title>在github发布自己的依赖</title>

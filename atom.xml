@@ -6,7 +6,7 @@
   <link href="https://fatwang1.github.io/atom.xml" rel="self"/>
   
   <link href="https://fatwang1.github.io/"/>
-  <updated>2024-05-16T09:50:56.877Z</updated>
+  <updated>2024-05-30T01:43:41.448Z</updated>
   <id>https://fatwang1.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在github发布自己的依赖</title>
+    <link href="https://fatwang1.github.io/2024/05/30/2024053000/"/>
+    <id>https://fatwang1.github.io/2024/05/30/2024053000/</id>
+    <published>2024-05-30T09:27:10.000Z</published>
+    <updated>2024-05-30T01:43:41.448Z</updated>
+    
+    <content type="html"><![CDATA[<p>平时工作积累了一些用起来比较顺手的函数，数据结构的封装，整理一下，发布成一个包。</p><h3 id="1-创建仓库"><a href="#1-创建仓库" class="headerlink" title="1. 创建仓库"></a>1. 创建仓库</h3><p>创建一个github仓库，根据自己的情况选择公开或者私有，再根据功能范围起一个库名。</p><h3 id="2-初始化"><a href="#2-初始化" class="headerlink" title="2. 初始化"></a>2. 初始化</h3><p>将项目拉到本地，</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">go mod init &lt;你的库名&gt;<br></code></pre></td></tr></table></figure><h3 id="3-添加库功能"><a href="#3-添加库功能" class="headerlink" title="3. 添加库功能"></a>3. 添加库功能</h3><p>把需要发布的功能函数添加到项目中，其中不希望被引用的功能，可以放到项目下<code>internal/</code>路径中</p><h3 id="4-push"><a href="#4-push" class="headerlink" title="4. push"></a>4. push</h3><p>将变更完的项目推送到github</p><h3 id="5-引用"><a href="#5-引用" class="headerlink" title="5. 引用"></a>5. 引用</h3><p>在其他项目中，执行</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">go get -v github.com/&lt;你的github用户名&gt;/&lt;你的库名&gt;<br></code></pre></td></tr></table></figure><p>然后就结束啦！</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;平时工作积累了一些用起来比较顺手的函数，数据结构的封装，整理一下，发布成一个包。&lt;/p&gt;
+&lt;h3 id=&quot;1-创建仓库&quot;&gt;&lt;a href=&quot;#1-创建仓库&quot; class=&quot;headerlink&quot; title=&quot;1. 创建仓库&quot;&gt;&lt;/a&gt;1. 创建仓库&lt;/h3&gt;&lt;p&gt;创建一个</summary>
+      
+    
+    
+    
+    <category term="教程" scheme="https://fatwang1.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="github" scheme="https://fatwang1.github.io/tags/github/"/>
+    
+    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    
+    <category term="go modules" scheme="https://fatwang1.github.io/tags/go-modules/"/>
+    
+  </entry>
   
   <entry>
     <title>linux串口通信 接收信息不完整 读取不全</title>
@@ -37,9 +66,9 @@
     <category term="异常" scheme="https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
     
     
-    <category term="linux" scheme="https://fatwang1.github.io/tags/linux/"/>
-    
     <category term="串口通信" scheme="https://fatwang1.github.io/tags/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/"/>
+    
+    <category term="linux" scheme="https://fatwang1.github.io/tags/linux/"/>
     
     <category term="c++" scheme="https://fatwang1.github.io/tags/c/"/>
     
@@ -66,9 +95,9 @@
     <category term="异常" scheme="https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
     
     
-    <category term="sed" scheme="https://fatwang1.github.io/tags/sed/"/>
-    
     <category term="linux" scheme="https://fatwang1.github.io/tags/linux/"/>
+    
+    <category term="sed" scheme="https://fatwang1.github.io/tags/sed/"/>
     
     <category term="shell" scheme="https://fatwang1.github.io/tags/shell/"/>
     

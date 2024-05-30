@@ -1,3 +1,4 @@
+https://fatwang1.github.io/2024/05/30/2024053000/
 https://fatwang1.github.io/about/index.html
 https://fatwang1.github.io/2024/05/15/2024051500/
 https://fatwang1.github.io/2024/05/16/2024051601/
@@ -7,14 +8,16 @@ https://fatwang1.github.io/categories/index.html
 https://fatwang1.github.io/tags/index.html
 https://fatwang1.github.io/404.html
 https://fatwang1.github.io/
+https://fatwang1.github.io/tags/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/
+https://fatwang1.github.io/tags/linux/
+https://fatwang1.github.io/tags/c/
 https://fatwang1.github.io/tags/github/
+https://fatwang1.github.io/tags/golang/
+https://fatwang1.github.io/tags/go-modules/
 https://fatwang1.github.io/tags/blog/
+https://fatwang1.github.io/tags/sed/
+https://fatwang1.github.io/tags/shell/
 https://fatwang1.github.io/tags/proxy/
 https://fatwang1.github.io/tags/git/
-https://fatwang1.github.io/tags/sed/
-https://fatwang1.github.io/tags/linux/
-https://fatwang1.github.io/tags/shell/
-https://fatwang1.github.io/tags/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/
-https://fatwang1.github.io/tags/c/
-https://fatwang1.github.io/categories/%E6%95%99%E7%A8%8B/
 https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/
+https://fatwang1.github.io/categories/%E6%95%99%E7%A8%8B/

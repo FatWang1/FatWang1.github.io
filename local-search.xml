@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>在github发布自己的依赖</title>
+    <link href="/2024/05/30/2024053000/"/>
+    <url>/2024/05/30/2024053000/</url>
+    
+    <content type="html"><![CDATA[<p>平时工作积累了一些用起来比较顺手的函数，数据结构的封装，整理一下，发布成一个包。</p><h3 id="1-创建仓库"><a href="#1-创建仓库" class="headerlink" title="1. 创建仓库"></a>1. 创建仓库</h3><p>创建一个github仓库，根据自己的情况选择公开或者私有，再根据功能范围起一个库名。</p><h3 id="2-初始化"><a href="#2-初始化" class="headerlink" title="2. 初始化"></a>2. 初始化</h3><p>将项目拉到本地，</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">go mod init &lt;你的库名&gt;<br></code></pre></td></tr></table></figure><h3 id="3-添加库功能"><a href="#3-添加库功能" class="headerlink" title="3. 添加库功能"></a>3. 添加库功能</h3><p>把需要发布的功能函数添加到项目中，其中不希望被引用的功能，可以放到项目下<code>internal/</code>路径中</p><h3 id="4-push"><a href="#4-push" class="headerlink" title="4. push"></a>4. push</h3><p>将变更完的项目推送到github</p><h3 id="5-引用"><a href="#5-引用" class="headerlink" title="5. 引用"></a>5. 引用</h3><p>在其他项目中，执行</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">go get -v github.com/&lt;你的github用户名&gt;/&lt;你的库名&gt;<br></code></pre></td></tr></table></figure><p>然后就结束啦！</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>github</tag>
+      
+      <tag>golang</tag>
+      
+      <tag>go modules</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>linux串口通信 接收信息不完整 读取不全</title>
     <link href="/2024/05/17/2024051602/"/>
     <url>/2024/05/17/2024051602/</url>
@@ -20,9 +49,9 @@
     
     <tags>
       
-      <tag>linux</tag>
-      
       <tag>串口通信</tag>
+      
+      <tag>linux</tag>
       
       <tag>c++</tag>
       
@@ -49,9 +78,9 @@
     
     <tags>
       
-      <tag>sed</tag>
-      
       <tag>linux</tag>
+      
+      <tag>sed</tag>
       
       <tag>shell</tag>
       

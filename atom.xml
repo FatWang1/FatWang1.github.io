@@ -6,7 +6,7 @@
   <link href="https://fatwang1.github.io/atom.xml" rel="self"/>
   
   <link href="https://fatwang1.github.io/"/>
-  <updated>2024-06-04T01:27:46.364Z</updated>
+  <updated>2024-06-04T05:19:50.210Z</updated>
   <id>https://fatwang1.github.io/</id>
   
   <author>
@@ -17,28 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>浏览器与服务器实时通信</title>
     <link href="https://fatwang1.github.io/2024/06/04/2024060400/"/>
     <id>https://fatwang1.github.io/2024/06/04/2024060400/</id>
-    <published>2024-06-04T01:22:29.215Z</published>
-    <updated>2024-06-04T01:27:46.364Z</updated>
+    <published>2024-06-04T09:23:43.000Z</published>
+    <updated>2024-06-04T05:19:50.210Z</updated>
     
-    <content type="html"><![CDATA[<p>title: ‘浏览器获得服务器实时消息的五种技术方案’</p><p>date: 2024-06-04 09:23:43 </p><p>tags: </p><ul><li>WebSocket </li><li>SSE</li><li>WebTransport</li><li>长轮询</li></ul><p>categories: </p><ul><li><p>技术方案</p></li><li><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2></li><li><h3 id="长轮询"><a href="#长轮询" class="headerlink" title="长轮询"></a>长轮询</h3></li></ul><p>长轮询是一种模拟HTTP上服务器推送的技术，通过保持连接打开状态直到有新数据可用来减少不必要的网络流量。</p><ul><li><h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3></li></ul><p>WebSocket提供了一个全双工的、长期存在的连接通道，适合需要低延迟的应用场景，如实时聊天、游戏和金融交易平台。</p><ul><li><h3 id="服务器发送事件（Server-Sent-Events-SSE）"><a href="#服务器发送事件（Server-Sent-Events-SSE）" class="headerlink" title="服务器发送事件（Server-Sent Events, SSE）"></a>服务器发送事件（Server-Sent Events, SSE）</h3></li></ul><p>服务器发送事件（Server-Sent Events, SSE）是一种从服务器单向推送更新到客户端的简单方法，适用于只需要服务器更新的场景，如实时新闻源、体育比分或需要实时更新的情况。SSE在连接断开时会自动重连，管理起来比WebSocket更简单。</p><ul><li><h3 id="WebTransport"><a href="#WebTransport" class="headerlink" title="WebTransport"></a>WebTransport</h3></li></ul><p>WebTransport是一个基于HTTP&#x2F;3 QUIC协议的新兴API，旨在实现高效、低延迟的客户端和服务器通信。它支持多流传输、可靠和不可靠的数据以及乱序发送数据，适用于高性能应用，如实时游戏和流媒体。然而，WebTransport目前仍处于工作草案阶段，支持度不广。</p><ul><li><h3 id="WebRTC"><a href="#WebRTC" class="headerlink" title="WebRTC"></a>WebRTC</h3></li></ul><p>WebRTC是一个用于浏览器和移动应用之间实时通信的开源项目，支持音频、视频和数据的点对点交换，但不直接与上述技术相比较，因为它主要用于客户端之间的交互，而非服务器客户端通信。</p><ul><li><h2 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h2></li></ul><p>只有WebSocket和WebTransport支持双向通信。<br>长轮询理论上可以双向通信，但不推荐，因为发送新数据到现有的长轮询连接会需要额外的HTTP请求。<br>SSE不支持向服务器发送数据，只能接收服务器的初始请求，且通常不能在HTTP正文中发送POST数据，但可以使用一些库（如eventsource polyfill）来扩展其功能。<br>浏览器的连接限制：<br>大多数现代浏览器每个域名允许六个连接，这限制了持续服务器到客户端消息传递方法的使用。尽管可以通过使用HTTP&#x2F;2或HTTP&#x2F;3来解决，这些协议使用单一连接并利用多路复用技术，但仍有默认的最大并发流设置（通常是100个并发流）。<br>在移动应用中，操作系统可能会关闭后台应用的开放连接，导致WebSocket等技术难以维持。在这种情况下，通常使用移动推送通知来更有效地发送数据。<br>企业环境中的代理和防火墙可能阻止非HTTP连接，使得WebSocket等技术难以集成，而SSE使用标准HTTP请求，可能更容易适应这些环境。</p><ul><li><h2 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h2></li></ul><p>WebSocket、SSE和WebTransport在低延迟、高吞吐量和可扩展性方面表现相似，但WebTransport依赖于新的HTTP&#x2F;3协议，未来可能会有更多性能优化。长轮询在延迟和吞吐量方面较差，因为它依赖于频繁建立新的HTTP连接。<br>推荐和适用场景：<br>SSE适合需要频繁服务器到客户端更新的简单场景，如新闻提要和实时数据流。<br>WebSocket适用于需要持续双向通信的应用，如游戏和聊天应用。<br>WebTransport是未来的趋势，但目前支持度不足，适用于需要高效多流通信的场景。<br>长轮询现在已被其他技术取代，不建议作为首选方案。<br>在构建实时应用程序时，应考虑这些技术的局限性和适用场景，并确保处理可能的连接问题，如客户端重新连接时可能错过的事件，以及公司网络环境中可能遇到的代理和防火墙问题。</p>]]></content>
+    <content type="html"><![CDATA[<ul><li><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2></li><li><h3 id="Long-Polling"><a href="#Long-Polling" class="headerlink" title="Long-Polling"></a>Long-Polling</h3></li></ul><p>长轮询是一种模拟HTTP上服务器推送的技术，通过保持连接打开状态直到有新数据可用来减少不必要的网络流量。</p><ul><li><h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3></li></ul><p>WebSocket提供了一个全双工的、长期存在的连接通道，适合需要低延迟的应用场景，如实时聊天、游戏和金融交易平台。</p><ul><li><h3 id="服务器发送事件（Server-Sent-Events-SSE）"><a href="#服务器发送事件（Server-Sent-Events-SSE）" class="headerlink" title="服务器发送事件（Server-Sent Events, SSE）"></a>服务器发送事件（Server-Sent Events, SSE）</h3></li></ul><p>服务器发送事件（Server-Sent Events, SSE）是一种从服务器单向推送更新到客户端的简单方法，适用于只需要服务器更新的场景，如实时新闻源、体育比分或需要实时更新的情况。SSE在连接断开时会自动重连，管理起来比WebSocket更简单。</p><ul><li><h3 id="WebTransport"><a href="#WebTransport" class="headerlink" title="WebTransport"></a>WebTransport</h3></li></ul><p>WebTransport是一个基于HTTP&#x2F;3 QUIC协议的新兴API，旨在实现高效、低延迟的客户端和服务器通信。它支持多流传输、可靠和不可靠的数据以及乱序发送数据，适用于高性能应用，如实时游戏和流媒体。然而，WebTransport目前仍处于工作草案阶段，支持度不广。</p><ul><li><h3 id="WebRTC"><a href="#WebRTC" class="headerlink" title="WebRTC"></a>WebRTC</h3></li></ul><p>WebRTC是一个用于浏览器和移动应用之间实时通信的开源项目，支持音频、视频和数据的点对点交换，但不直接与上述技术相比较，因为它主要用于客户端之间的交互，而非服务器客户端通信。</p><ul><li><h2 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h2></li><li>基础限制</li></ul><ol><li>只有WebSocket和WebTransport支持双向通信。</li><li>长轮询理论上可以双向通信，但不推荐，因为发送新数据到现有的长轮询连接会需要额外的HTTP请求。</li><li>SSE不支持向服务器发送数据，只能接收服务器的初始请求，且通常不能在HTTP正文中发送POST数据，但可以使用一些库（如eventsource polyfill）来扩展其功能。</li></ol><ul><li><p>浏览器的连接限制：<br>大多数现代浏览器每个域名允许六个连接，这限制了持续服务器到客户端消息传递方法的使用。尽管可以通过使用HTTP&#x2F;2或HTTP&#x2F;3来解决，这些协议使用单一连接并利用多路复用技术，但仍有默认的最大并发流设置（通常是100个并发流）。<br>在移动应用中，操作系统可能会关闭后台应用的开放连接，导致WebSocket等技术难以维持。在这种情况下，通常使用移动推送通知来更有效地发送数据。<br>企业环境中的代理和防火墙可能阻止非HTTP连接，使得WebSocket等技术难以集成，而SSE使用标准HTTP请求，可能更容易适应这些环境。</p></li><li><h2 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h2></li></ul><p>WebSocket、SSE和WebTransport在低延迟、高吞吐量和可扩展性方面表现相似，但WebTransport依赖于新的HTTP&#x2F;3协议，未来可能会有更多性能优化。<br>长轮询在延迟和吞吐量方面较差，因为它依赖于频繁建立新的HTTP连接。</p><ul><li><h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2></li></ul><ol><li>SSE适合需要频繁服务器到客户端更新的简单场景，如新闻提要和实时数据流。</li><li>WebSocket适用于需要持续双向通信的应用，如游戏和聊天应用。</li><li>WebTransport是未来的趋势，但目前支持度不足，适用于需要高效多流通信的场景。</li><li>长轮询现在已被其他技术取代，不建议作为首选方案。</li></ol><p>在构建实时应用程序时，应考虑这些技术的局限性和适用场景，并确保处理可能的连接问题，如客户端重新连接时可能错过的事件，以及公司网络环境中可能遇到的代理和防火墙问题。</p><h2 id="ref："><a href="#ref：" class="headerlink" title="ref："></a>ref：</h2><p><a href="https://rxdb.info/articles/websockets-sse-polling-webrtc-webtransport.html">WebSockets vs Server-Sent-Events vs Long-Polling vs WebRTC vs WebTransport</a></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;title: ‘浏览器获得服务器实时消息的五种技术方案’&lt;/p&gt;
-&lt;p&gt;date: 2024-06-04 09:23:43 &lt;/p&gt;
-&lt;p&gt;tags: &lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;WebSocket &lt;/li&gt;
-&lt;li&gt;SSE&lt;/li&gt;
-&lt;li&gt;WebTransport&lt;/</summary>
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;/li&gt;
+&lt;li&gt;&lt;h3 id=&quot;Long-Polling&quot;&gt;&lt;a href=&quot;#Long-Polling&quot; class=&quot;h</summary>
       
     
     
     
+    <category term="技术方案" scheme="https://fatwang1.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/"/>
+    
+    
+    <category term="WebSocket" scheme="https://fatwang1.github.io/tags/WebSocket/"/>
+    
+    <category term="SSE" scheme="https://fatwang1.github.io/tags/SSE/"/>
+    
+    <category term="WebTransport" scheme="https://fatwang1.github.io/tags/WebTransport/"/>
+    
+    <category term="Long-Polling" scheme="https://fatwang1.github.io/tags/Long-Polling/"/>
+    
+    <category term="WebRTC" scheme="https://fatwang1.github.io/tags/WebRTC/"/>
     
   </entry>
   

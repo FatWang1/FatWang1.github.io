@@ -16,24 +16,28 @@
   <meta name="author" content="衣云乘风">
   <meta name="keywords" content="这可能是一个keywords?">
   
-    <meta name="description" content="title: ‘浏览器获得服务器实时消息的五种技术方案’ date: 2024-06-04 09:23:43  tags:   WebSocket  SSE WebTransport 长轮询  categories:   技术方案  简介 长轮询  长轮询是一种模拟HTTP上服务器推送的技术，通过保持连接打开状态直到有新数据可用来减少不必要的网络流量。  WebSocket  WebSocket提">
+    <meta name="description" content="简介 Long-Polling  长轮询是一种模拟HTTP上服务器推送的技术，通过保持连接打开状态直到有新数据可用来减少不必要的网络流量。  WebSocket  WebSocket提供了一个全双工的、长期存在的连接通道，适合需要低延迟的应用场景，如实时聊天、游戏和金融交易平台。  服务器发送事件（Server-Sent Events, SSE）  服务器发送事件（Server-Sent Eve">
 <meta property="og:type" content="article">
-<meta property="og:title" content="旅行手记">
+<meta property="og:title" content="浏览器与服务器实时通信">
 <meta property="og:url" content="https://fatwang1.github.io/2024/06/04/2024060400/index.html">
 <meta property="og:site_name" content="旅行手记">
-<meta property="og:description" content="title: ‘浏览器获得服务器实时消息的五种技术方案’ date: 2024-06-04 09:23:43  tags:   WebSocket  SSE WebTransport 长轮询  categories:   技术方案  简介 长轮询  长轮询是一种模拟HTTP上服务器推送的技术，通过保持连接打开状态直到有新数据可用来减少不必要的网络流量。  WebSocket  WebSocket提">
+<meta property="og:description" content="简介 Long-Polling  长轮询是一种模拟HTTP上服务器推送的技术，通过保持连接打开状态直到有新数据可用来减少不必要的网络流量。  WebSocket  WebSocket提供了一个全双工的、长期存在的连接通道，适合需要低延迟的应用场景，如实时聊天、游戏和金融交易平台。  服务器发送事件（Server-Sent Events, SSE）  服务器发送事件（Server-Sent Eve">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-04T01:22:29.215Z">
-<meta property="article:modified_time" content="2024-06-04T01:27:46.364Z">
+<meta property="article:published_time" content="2024-06-04T09:23:43.000Z">
+<meta property="article:modified_time" content="2024-06-04T05:19:50.210Z">
 <meta property="article:author" content="衣云乘风">
-<meta property="article:tag" content="这可能是一个keywords?">
+<meta property="article:tag" content="WebSocket">
+<meta property="article:tag" content="SSE">
+<meta property="article:tag" content="WebTransport">
+<meta property="article:tag" content="Long-Polling">
+<meta property="article:tag" content="WebRTC">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>旅行手记</title>
+  <title>浏览器与服务器实时通信 - 旅行手记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -240,7 +244,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="浏览器与服务器实时通信"></span>
           
         </div>
 
@@ -251,8 +255,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-04 01:22" pubdate>
-          2024年6月4日 凌晨
+        <time datetime="2024-06-04 09:23" pubdate>
+          2024年6月4日 上午
         </time>
       </span>
     
@@ -263,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          984 字
+          952 字
         
       </span>
     
@@ -274,7 +278,7 @@
         
         
         
-          9 分钟
+          8 分钟
         
       </span>
     
@@ -311,26 +315,14 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">浏览器与服务器实时通信</h1>
             
             
               <div class="markdown-body">
                 
-                <p>title: ‘浏览器获得服务器实时消息的五种技术方案’</p>
-<p>date: 2024-06-04 09:23:43 </p>
-<p>tags: </p>
-<ul>
-<li>WebSocket </li>
-<li>SSE</li>
-<li>WebTransport</li>
-<li>长轮询</li>
-</ul>
-<p>categories: </p>
-<ul>
-<li><p>技术方案</p>
-</li>
+                <ul>
 <li><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2></li>
-<li><h3 id="长轮询"><a href="#长轮询" class="headerlink" title="长轮询"></a>长轮询</h3></li>
+<li><h3 id="Long-Polling"><a href="#Long-Polling" class="headerlink" title="Long-Polling"></a>Long-Polling</h3></li>
 </ul>
 <p>长轮询是一种模拟HTTP上服务器推送的技术，通过保持连接打开状态直到有新数据可用来减少不必要的网络流量。</p>
 <ul>
@@ -351,12 +343,30 @@
 <p>WebRTC是一个用于浏览器和移动应用之间实时通信的开源项目，支持音频、视频和数据的点对点交换，但不直接与上述技术相比较，因为它主要用于客户端之间的交互，而非服务器客户端通信。</p>
 <ul>
 <li><h2 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h2></li>
+<li>基础限制</li>
 </ul>
-<p>只有WebSocket和WebTransport支持双向通信。<br>长轮询理论上可以双向通信，但不推荐，因为发送新数据到现有的长轮询连接会需要额外的HTTP请求。<br>SSE不支持向服务器发送数据，只能接收服务器的初始请求，且通常不能在HTTP正文中发送POST数据，但可以使用一些库（如eventsource polyfill）来扩展其功能。<br>浏览器的连接限制：<br>大多数现代浏览器每个域名允许六个连接，这限制了持续服务器到客户端消息传递方法的使用。尽管可以通过使用HTTP&#x2F;2或HTTP&#x2F;3来解决，这些协议使用单一连接并利用多路复用技术，但仍有默认的最大并发流设置（通常是100个并发流）。<br>在移动应用中，操作系统可能会关闭后台应用的开放连接，导致WebSocket等技术难以维持。在这种情况下，通常使用移动推送通知来更有效地发送数据。<br>企业环境中的代理和防火墙可能阻止非HTTP连接，使得WebSocket等技术难以集成，而SSE使用标准HTTP请求，可能更容易适应这些环境。</p>
+<ol>
+<li>只有WebSocket和WebTransport支持双向通信。</li>
+<li>长轮询理论上可以双向通信，但不推荐，因为发送新数据到现有的长轮询连接会需要额外的HTTP请求。</li>
+<li>SSE不支持向服务器发送数据，只能接收服务器的初始请求，且通常不能在HTTP正文中发送POST数据，但可以使用一些库（如eventsource polyfill）来扩展其功能。</li>
+</ol>
 <ul>
+<li><p>浏览器的连接限制：<br>大多数现代浏览器每个域名允许六个连接，这限制了持续服务器到客户端消息传递方法的使用。尽管可以通过使用HTTP&#x2F;2或HTTP&#x2F;3来解决，这些协议使用单一连接并利用多路复用技术，但仍有默认的最大并发流设置（通常是100个并发流）。<br>在移动应用中，操作系统可能会关闭后台应用的开放连接，导致WebSocket等技术难以维持。在这种情况下，通常使用移动推送通知来更有效地发送数据。<br>企业环境中的代理和防火墙可能阻止非HTTP连接，使得WebSocket等技术难以集成，而SSE使用标准HTTP请求，可能更容易适应这些环境。</p>
+</li>
 <li><h2 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h2></li>
 </ul>
-<p>WebSocket、SSE和WebTransport在低延迟、高吞吐量和可扩展性方面表现相似，但WebTransport依赖于新的HTTP&#x2F;3协议，未来可能会有更多性能优化。长轮询在延迟和吞吐量方面较差，因为它依赖于频繁建立新的HTTP连接。<br>推荐和适用场景：<br>SSE适合需要频繁服务器到客户端更新的简单场景，如新闻提要和实时数据流。<br>WebSocket适用于需要持续双向通信的应用，如游戏和聊天应用。<br>WebTransport是未来的趋势，但目前支持度不足，适用于需要高效多流通信的场景。<br>长轮询现在已被其他技术取代，不建议作为首选方案。<br>在构建实时应用程序时，应考虑这些技术的局限性和适用场景，并确保处理可能的连接问题，如客户端重新连接时可能错过的事件，以及公司网络环境中可能遇到的代理和防火墙问题。</p>
+<p>WebSocket、SSE和WebTransport在低延迟、高吞吐量和可扩展性方面表现相似，但WebTransport依赖于新的HTTP&#x2F;3协议，未来可能会有更多性能优化。<br>长轮询在延迟和吞吐量方面较差，因为它依赖于频繁建立新的HTTP连接。</p>
+<ul>
+<li><h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2></li>
+</ul>
+<ol>
+<li>SSE适合需要频繁服务器到客户端更新的简单场景，如新闻提要和实时数据流。</li>
+<li>WebSocket适用于需要持续双向通信的应用，如游戏和聊天应用。</li>
+<li>WebTransport是未来的趋势，但目前支持度不足，适用于需要高效多流通信的场景。</li>
+<li>长轮询现在已被其他技术取代，不建议作为首选方案。</li>
+</ol>
+<p>在构建实时应用程序时，应考虑这些技术的局限性和适用场景，并确保处理可能的连接问题，如客户端重新连接时可能错过的事件，以及公司网络环境中可能遇到的代理和防火墙问题。</p>
+<h2 id="ref："><a href="#ref：" class="headerlink" title="ref："></a>ref：</h2><p><a target="_blank" rel="noopener" href="https://rxdb.info/articles/websockets-sse-polling-webrtc-webtransport.html">WebSockets vs Server-Sent-Events vs Long-Polling vs WebRTC vs WebTransport</a></p>
 
                 
               </div>
@@ -365,6 +375,42 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/" class="category-chain-item">技术方案</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/WebSocket/" class="print-no-link">#WebSocket</a>
+      
+        <a href="/tags/SSE/" class="print-no-link">#SSE</a>
+      
+        <a href="/tags/WebTransport/" class="print-no-link">#WebTransport</a>
+      
+        <a href="/tags/Long-Polling/" class="print-no-link">#Long-Polling</a>
+      
+        <a href="/tags/WebRTC/" class="print-no-link">#WebRTC</a>
+      
+    </div>
   
 </div>
 
@@ -374,7 +420,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>浏览器与服务器实时通信</div>
       <div>https://fatwang1.github.io/2024/06/04/2024060400/</div>
     </div>
     <div class="license-meta">

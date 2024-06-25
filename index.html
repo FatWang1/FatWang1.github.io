@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/bitbug_favicon.ico">
+  <link rel="icon" href="/img/bitbug_favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -270,6 +270,69 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/06/26/2024062500/" target="_self">
+          goroutine 排队、调度
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/26/2024062500/" target="_self">
+        <div>
+          有以下代码： 123456789101112131415func question(cnt int) &#123;	runtime.GOMAXPROCS(1)	var wg sync.WaitGroup	for i := 1; i &lt;= cnt; i++ &#123;		wg.Add(1)		go func(n int) &#123;			defer wg.Done()			println(
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-06-25 20:04" pubdate>
+              2024-06-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="category-chain-item">面试题</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/golang/">#golang</a>
+            
+              <a href="/tags/groutine/">#groutine</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/06/04/2024060400/" target="_self">
           浏览器与服务器实时通信
         </a>
@@ -340,7 +403,7 @@
       <h2 class="index-header">
         
         <a href="/2024/05/30/2024053001/" target="_self">
-          terraform实践
+          working--terraform实践
         </a>
       </h2>
 
@@ -371,7 +434,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/" class="category-chain-item">技术方案</a>
   
   
 

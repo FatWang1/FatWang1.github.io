@@ -1,5 +1,3 @@
-https://fatwang1.github.io/2024/07/14/2024071300/
-https://fatwang1.github.io/2024/07/14/2024071301/
 https://fatwang1.github.io/2024/06/26/2024062500/
 https://fatwang1.github.io/2024/05/30/2024053001/
 https://fatwang1.github.io/2024/06/04/2024060400/
@@ -15,14 +13,15 @@ https://fatwang1.github.io/404.html
 https://fatwang1.github.io/
 https://fatwang1.github.io/tags/github/
 https://fatwang1.github.io/tags/blog/
+https://fatwang1.github.io/tags/proxy/
+https://fatwang1.github.io/tags/git/
 https://fatwang1.github.io/tags/sed/
 https://fatwang1.github.io/tags/linux/
 https://fatwang1.github.io/tags/shell/
-https://fatwang1.github.io/tags/proxy/
-https://fatwang1.github.io/tags/git/
 https://fatwang1.github.io/tags/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/
 https://fatwang1.github.io/tags/c/
 https://fatwang1.github.io/tags/golang/
+https://fatwang1.github.io/tags/groutine/
 https://fatwang1.github.io/tags/go-modules/
 https://fatwang1.github.io/tags/devops/
 https://fatwang1.github.io/tags/terraform/
@@ -31,11 +30,7 @@ https://fatwang1.github.io/tags/SSE/
 https://fatwang1.github.io/tags/WebTransport/
 https://fatwang1.github.io/tags/Long-Polling/
 https://fatwang1.github.io/tags/WebRTC/
-https://fatwang1.github.io/tags/groutine/
-https://fatwang1.github.io/tags/%E5%BF%83%E7%90%86/
-https://fatwang1.github.io/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/
 https://fatwang1.github.io/categories/%E6%95%99%E7%A8%8B/
 https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/
-https://fatwang1.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/
 https://fatwang1.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/
-https://fatwang1.github.io/categories/%E8%87%AA%E6%88%91%E5%86%85%E6%A0%B8%E5%88%86%E6%9E%90%E4%B8%8E%E6%9E%84%E5%BB%BA/
+https://fatwang1.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/

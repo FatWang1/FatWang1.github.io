@@ -2,24 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://fatwang1.github.io/2024/07/14/2024071300/</loc>
-    
-    <lastmod>2024-07-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://fatwang1.github.io/2024/07/14/2024071301/</loc>
-    
-    <lastmod>2024-07-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://fatwang1.github.io/2024/06/26/2024062500/</loc>
     
     <lastmod>2024-06-25</lastmod>
@@ -151,6 +133,20 @@
   </url>
   
   <url>
+    <loc>https://fatwang1.github.io/tags/proxy/</loc>
+    <lastmod>2024-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://fatwang1.github.io/tags/git/</loc>
+    <lastmod>2024-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://fatwang1.github.io/tags/sed/</loc>
     <lastmod>2024-07-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -172,20 +168,6 @@
   </url>
   
   <url>
-    <loc>https://fatwang1.github.io/tags/proxy/</loc>
-    <lastmod>2024-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://fatwang1.github.io/tags/git/</loc>
-    <lastmod>2024-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://fatwang1.github.io/tags/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/</loc>
     <lastmod>2024-07-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -201,6 +183,13 @@
   
   <url>
     <loc>https://fatwang1.github.io/tags/golang/</loc>
+    <lastmod>2024-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://fatwang1.github.io/tags/groutine/</loc>
     <lastmod>2024-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -262,27 +251,6 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://fatwang1.github.io/tags/groutine/</loc>
-    <lastmod>2024-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://fatwang1.github.io/tags/%E5%BF%83%E7%90%86/</loc>
-    <lastmod>2024-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://fatwang1.github.io/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
-    <lastmod>2024-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
@@ -300,13 +268,6 @@
   </url>
   
   <url>
-    <loc>https://fatwang1.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/</loc>
-    <lastmod>2024-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://fatwang1.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2024-07-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -314,7 +275,7 @@
   </url>
   
   <url>
-    <loc>https://fatwang1.github.io/categories/%E8%87%AA%E6%88%91%E5%86%85%E6%A0%B8%E5%88%86%E6%9E%90%E4%B8%8E%E6%9E%84%E5%BB%BA/</loc>
+    <loc>https://fatwang1.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/</loc>
     <lastmod>2024-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

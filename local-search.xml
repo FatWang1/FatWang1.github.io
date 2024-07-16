@@ -4,46 +4,6 @@
   
   
   <entry>
-    <title>第二份工作反思</title>
-    <link href="/2024/07/14/2024071301/"/>
-    <url>/2024/07/14/2024071301/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>调节心态</title>
-    <link href="/2024/07/14/2024071300/"/>
-    <url>/2024/07/14/2024071300/</url>
-    
-    <content type="html"><![CDATA[<h2 id="问题现状"><a href="#问题现状" class="headerlink" title="问题现状"></a>问题现状</h2><p>经常在工作或者日常生活中会会因为身体不舒服&#x2F;其他事情不顺利，导致一段时间内有种掉到泥潭中的感觉，状态下滑严重，哪怕影响状态的事情解决了还是会有影响。</p><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>平时我们在做事时会大致依据以下的闭环进行：</p><p><img src="/.io//normal_direct_cycle.png"></p><p>但是我们在存在负面影响时会是如下运行情况：</p><p><img src="/.io//dircet_cycle.png"></p><p>显而易见，精力的无效消耗增加了。</p><h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>基于上面的分析，可以明确的是在不会获得更多信息时，不断地决策自旋是没有意义的，图耗精力，反而会影响状态。<br>所以在一般情况下，能够理清事情的完整流程，并且没有明显的风险点，就可以直接去执行了。<br>如果事情比较重要，可以引入第三方辅助决策，找朋友、有经验的人或者事情结果关联人一起商量。</p><p>但始终要明确</p><blockquote><p>没有新的信息的再次决策是没有意义的</p></blockquote>]]></content>
-    
-    
-    <categories>
-      
-      <category>自我内核分析与构建</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>心理</tag>
-      
-      <tag>方法论</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>goroutine 排队、调度</title>
     <link href="/2024/06/26/2024062500/"/>
     <url>/2024/06/26/2024062500/</url>

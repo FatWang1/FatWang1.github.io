@@ -6,7 +6,7 @@
   <link href="https://fatwang1.github.io/atom.xml" rel="self"/>
   
   <link href="https://fatwang1.github.io/"/>
-  <updated>2024-06-25T12:59:32.038Z</updated>
+  <updated>2024-09-13T21:26:01.720Z</updated>
   <id>https://fatwang1.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>想写的角色</title>
+    <link href="https://fatwang1.github.io/2024/09/12/2024091200/"/>
+    <id>https://fatwang1.github.io/2024/09/12/2024091200/</id>
+    <published>2024-09-12T01:07:47.000Z</published>
+    <updated>2024-09-13T21:26:01.720Z</updated>
+    
+    <content type="html"><![CDATA[<p>角色冷静 果决 强大 严谨 但是由于所属势力的倾颓 最终败给了一直以其为目标的新一代</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;角色冷静 果决 强大 严谨 但是由于所属势力的倾颓 最终败给了一直以其为目标的新一代&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="idea snapshot" scheme="https://fatwang1.github.io/categories/idea-snapshot/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>goroutine 排队、调度</title>

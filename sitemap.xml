@@ -214,6 +214,20 @@
   </url>
   
   <url>
+    <loc>https://fatwang1.github.io/tags/devops/</loc>
+    <lastmod>2024-09-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://fatwang1.github.io/tags/terraform/</loc>
+    <lastmod>2024-09-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://fatwang1.github.io/tags/WebSocket/</loc>
     <lastmod>2024-09-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -249,6 +263,13 @@
   </url>
   
   <url>
+    <loc>https://fatwang1.github.io/tags/groutine/</loc>
+    <lastmod>2024-09-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://fatwang1.github.io/tags/hash/</loc>
     <lastmod>2024-09-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -257,27 +278,6 @@
   
   <url>
     <loc>https://fatwang1.github.io/tags/map/</loc>
-    <lastmod>2024-09-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://fatwang1.github.io/tags/groutine/</loc>
-    <lastmod>2024-09-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://fatwang1.github.io/tags/devops/</loc>
-    <lastmod>2024-09-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://fatwang1.github.io/tags/terraform/</loc>
     <lastmod>2024-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

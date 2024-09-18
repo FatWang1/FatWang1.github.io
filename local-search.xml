@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>golang map</title>
+    <link href="/2024/09/18/2024091800/"/>
+    <url>/2024/09/18/2024091800/</url>
+    
+    <content type="html"><![CDATA[<ul><li><h2 id="引"><a href="#引" class="headerlink" title="引"></a>引</h2></li></ul><p>维基百科里这样定义 map：</p><blockquote><p>In computer science, an associative array, map, symbol table, or dictionary is an abstract data type composed of a collection of (key, value) pairs, such that each possible key appears at most once in the collection.</p></blockquote><ul><li><h2 id="算法基础"><a href="#算法基础" class="headerlink" title="算法基础"></a>算法基础</h2></li></ul><p>在<code>golang</code>中，map的实现主要是基于hash算法。而hash算法常常会出现碰撞的问题，一般有两种方式进行应对，一是链表地址(golang就采用了此方式)，再就是开放寻址法。</p><ul><li><h3 id="hash表-单向散列表"><a href="#hash表-单向散列表" class="headerlink" title="hash表(单向散列表)"></a>hash表(单向散列表)</h3></li></ul><p>通过建立key与elem的映射，达到高效查找key对应的elem，一般时间复杂度为O(1)。<br>举个简单的例子：</p><blockquote><p>仅用一个数组来实现哈希表。在哈希表中，我们将数组中的每个空位称为桶（bucket），每个桶可存储一个键值对。因此，查询操作就是找到 key 对应的桶，并在桶中获取 value 。<br>那么，如何基于 key 定位对应的桶呢？这是通过哈希函数（hash function）实现的。哈希函数的作用是将一个较大的输入空间映射到一个较小的输出空间<br>输入一个 key ，哈希函数的计算过程分为以下两步。</p><ol><li><p>通过某种哈希算法 hash() 计算得到哈希值。</p></li><li><p>将哈希值对桶数量（数组长度）capacity 取模，从而获取该 key 对应的数组索引 index 。<br><code>index = hash(key) % capacity</code></p></li></ol><p>随后，我们就可以利用 index 在哈希表中访问对应的桶，从而获取 value 。</p><p>设数组长度 capacity &#x3D; 100、哈希算法 hash(key) &#x3D; key ，易得哈希函数为 key % 100 。<br><img src="/.io//hash_function.png"></p></blockquote><ul><li><h3 id="hash冲突"><a href="#hash冲突" class="headerlink" title="hash冲突"></a>hash冲突</h3></li></ul><p>从本质上看，哈希函数的作用是将所有 <code>key</code> 构成的输入空间映射到数组所有索引构成的输出空间，而输入空间往往远大于输出空间。因此，<strong>理论上一定存在“多个输入对应相同输出”的情况</strong>。<br>对于上述示例中的哈希函数，当输入的 <code>key</code> 后两位相同时，哈希函数的输出结果也相同。例如，查询学号为 12836 和 20336 的两个学生时，我们得到：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">12836 % 100 = 36<br>20336 % 100 = 36<br></code></pre></td></tr></table></figure><p>两个学号指向了同一个姓名，这显然是不对的。我们将这种多个输入对应同一输出的情况称为哈希冲突（hash collision）<br><img src="/.io//hash_collision.png"><br>容易想到，哈希表容量越大，多个 key 被分配到同一个桶中的概率就越低，冲突就越少。因此，我们可以通过扩容哈希表来减少哈希冲突。</p><ul><li><h3 id="hash扩容"><a href="#hash扩容" class="headerlink" title="hash扩容"></a>hash扩容</h3></li></ul><p>类似于数组扩容，哈希表扩容需将所有键值对从原哈希表迁移至新哈希表，非常耗时；并且由于哈希表容量 <code>capacity</code> 改变，我们需要通过哈希函数来重新计算所有键值对的存储位置，这进一步增加了扩容过程的计算开销。为此，编程语言通常会预留足够大的哈希表容量，防止频繁扩容。<br>负载因子（load factor）是哈希表的一个重要概念，其定义为哈希表的元素数量除以桶数量，用于衡量哈希冲突的严重程度，<strong>也常作为哈希表扩容的触发条件</strong>。例如在 golang 中，当负载因子超过 $0.65$ 时，系统会将哈希表扩容至原先的 $2$ 倍。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>面试题</category>
+      
+      <category>基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>golang</tag>
+      
+      <tag>hash</tag>
+      
+      <tag>map</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>想写的角色</title>
     <link href="/2024/09/12/2024091200/"/>
     <url>/2024/09/12/2024091200/</url>

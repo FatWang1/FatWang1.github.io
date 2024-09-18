@@ -345,14 +345,14 @@
 </li>
 </ol>
 <p>随后，我们就可以利用 index 在哈希表中访问对应的桶，从而获取 value 。</p>
-<p>设数组长度 capacity &#x3D; 100、哈希算法 hash(key) &#x3D; key ，易得哈希函数为 key % 100 。<br><img src="/img/hash_function.png" srcset="/img/loading.gif" lazyload></p>
+<p>设数组长度 capacity &#x3D; 100、哈希算法 hash(key) &#x3D; key ，易得哈希函数为 key % 100 。<br><img src="/.io//hash_function.png" srcset="/img/loading.gif" lazyload></p>
 </blockquote>
 <ul>
 <li><h3 id="hash冲突"><a href="#hash冲突" class="headerlink" title="hash冲突"></a>hash冲突</h3></li>
 </ul>
 <p>从本质上看，哈希函数的作用是将所有 <code>key</code> 构成的输入空间映射到数组所有索引构成的输出空间，而输入空间往往远大于输出空间。因此，<strong>理论上一定存在“多个输入对应相同输出”的情况</strong>。<br>对于上述示例中的哈希函数，当输入的 <code>key</code> 后两位相同时，哈希函数的输出结果也相同。例如，查询学号为 12836 和 20336 的两个学生时，我们得到：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">12836 % 100 = 36<br>20336 % 100 = 36<br></code></pre></td></tr></table></figure>
-<p>两个学号指向了同一个姓名，这显然是不对的。我们将这种多个输入对应同一输出的情况称为哈希冲突（hash collision）<br><img src="/img/hash_collision.png" srcset="/img/loading.gif" lazyload><br>容易想到，哈希表容量越大，多个 key 被分配到同一个桶中的概率就越低，冲突就越少。因此，我们可以通过扩容哈希表来减少哈希冲突。</p>
+<p>两个学号指向了同一个姓名，这显然是不对的。我们将这种多个输入对应同一输出的情况称为哈希冲突（hash collision）<br><img src="/.io//hash_collision.png" srcset="/img/loading.gif" lazyload><br>容易想到，哈希表容量越大，多个 key 被分配到同一个桶中的概率就越低，冲突就越少。因此，我们可以通过扩容哈希表来减少哈希冲突。</p>
 <ul>
 <li><h3 id="hash扩容"><a href="#hash扩容" class="headerlink" title="hash扩容"></a>hash扩容</h3></li>
 </ul>

@@ -6,7 +6,7 @@
   <link href="https://fatwang1.github.io/atom.xml" rel="self"/>
   
   <link href="https://fatwang1.github.io/"/>
-  <updated>2024-09-18T09:41:44.097Z</updated>
+  <updated>2024-09-25T22:29:22.249Z</updated>
   <id>https://fatwang1.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo 图片路径生成问题</title>
+    <link href="https://fatwang1.github.io/2024/09/26/2024092600/"/>
+    <id>https://fatwang1.github.io/2024/09/26/2024092600/</id>
+    <published>2024-09-26T06:17:04.000Z</published>
+    <updated>2024-09-25T22:29:22.249Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用hexo进行博客部署时，图片路径生成出现如下问题</p><p>预期元素应该为:<br><code>&lt;img src=&quot;/img/assets.avif&quot; alt=&quot;Terraform deployment workflow&quot;&gt;</code><br>但实际是<br><code>&lt;img src=&quot;/.io//assets.avif&quot; alt=&quot;Terraform deployment workflow&quot;&gt;</code></p><p>hexo版本配置信息如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash">INFO  Validating config<br>hexo: 7.2.0<br>hexo-cli: 4.3.2<br>os: darwin 23.5.0 14.5<br><br>node: 20.5.1<br>acorn: 8.10.0<br>ada: 2.5.1<br>ares: 1.19.1<br><span class="hljs-built_in">base64</span>: 0.5.0<br>brotli: 1.0.9<br>cjs_module_lexer: 1.2.2<br>cldr: 43.1<br>icu: 73.2<br>llhttp: 8.1.1<br>modules: 115<br>napi: 9<br>nghttp2: 1.55.1<br>openssl: 3.1.2<br>simdutf: 3.2.14<br>tz: 2023c<br>undici: 5.22.1<br>unicode: 15.0<br>uv: 1.46.0<br>uvwasi: 0.0.18<br>v8: 11.3.244.8-node.10<br>zlib: 1.2.11<br></code></pre></td></tr></table></figure><p>根据网上<a href="https://hexo.io/zh-cn/docs/asset-folders">线索</a>，修改hexo的<code>\node_modules\hexo-asset-image\index.js </code> 26行。<br>原：<br><code>link = link.substring(beginPos, endPos) + &#39;/&#39; + appendLink;</code><br>改为(根据自己情况)：<br><code>link = &#39;img/&#39; + appendLink;</code></p><p>经过 <code>hexo g</code> 后生成的图像元素即与预期元素<br><code>&lt;img src=&quot;/img/assets.avif&quot; alt=&quot;Terraform deployment workflow&quot;&gt;</code><br>相同。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;使用hexo进行博客部署时，图片路径生成出现如下问题&lt;/p&gt;
+&lt;p&gt;预期元素应该为:&lt;br&gt;&lt;code&gt;&amp;lt;img src=&amp;quot;/img/assets.avif&amp;quot; alt=&amp;quot;Terraform deployment workflow&amp;quot</summary>
+      
+    
+    
+    
+    <category term="异常" scheme="https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
+    
+    
+    <category term="hexo" scheme="https://fatwang1.github.io/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>golang map</title>
@@ -279,7 +304,7 @@
     <link href="https://fatwang1.github.io/2024/05/15/2024051500/"/>
     <id>https://fatwang1.github.io/2024/05/15/2024051500/</id>
     <published>2024-05-14T22:55:10.000Z</published>
-    <updated>2024-05-16T09:57:41.286Z</updated>
+    <updated>2024-09-25T22:17:44.970Z</updated>
     
     <content type="html"><![CDATA[<p>可以参考<a href="https://zhuanlan.zhihu.com/p/667089756">hexo&amp;github 搭建博客（保姆级）</a></p>]]></content>
     
@@ -294,6 +319,8 @@
     <category term="github" scheme="https://fatwang1.github.io/tags/github/"/>
     
     <category term="blog" scheme="https://fatwang1.github.io/tags/blog/"/>
+    
+    <category term="hexo" scheme="https://fatwang1.github.io/tags/hexo/"/>
     
   </entry>
   

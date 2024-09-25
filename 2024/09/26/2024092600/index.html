@@ -16,26 +16,34 @@
   <meta name="author" content="衣云乘风">
   <meta name="keywords" content="这可能是一个keywords?">
   
-    <meta name="description" content="虚心实意，制怠平欲">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://fatwang1.github.io/categories/index.html">
+    <meta name="description" content="使用hexo进行博客部署时，图片路径生成出现如下问题 预期元素应该为:&lt;img src&#x3D;&quot;&#x2F;img&#x2F;assets.avif&quot; alt&#x3D;&quot;Terraform deployment workflow&quot;&gt;但实际是&lt;img src&#x3D;&quot;&#x2F;.io&#x2F;&#x2F;assets.avif&quot; alt&#x3D;&quot;Terraform deploymen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo 图片路径生成问题">
+<meta property="og:url" content="https://fatwang1.github.io/2024/09/26/2024092600/index.html">
 <meta property="og:site_name" content="旅行手记">
-<meta property="og:description" content="虚心实意，制怠平欲">
+<meta property="og:description" content="使用hexo进行博客部署时，图片路径生成出现如下问题 预期元素应该为:&lt;img src&#x3D;&quot;&#x2F;img&#x2F;assets.avif&quot; alt&#x3D;&quot;Terraform deployment workflow&quot;&gt;但实际是&lt;img src&#x3D;&quot;&#x2F;.io&#x2F;&#x2F;assets.avif&quot; alt&#x3D;&quot;Terraform deploymen">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-26T06:17:04.000Z">
+<meta property="article:modified_time" content="2024-09-25T22:29:22.249Z">
 <meta property="article:author" content="衣云乘风">
-<meta property="article:tag" content="这可能是一个keywords?">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>分类 - 旅行手记</title>
+  <title>hexo 图片路径生成问题 - 旅行手记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
@@ -126,7 +134,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -232,9 +240,49 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="分类"></span>
+            <span id="subtitle" data-typed-text="hexo 图片路径生成问题"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-26 06:17" pubdate>
+          2024年9月26日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          208 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          2 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
 
         
       </div>
@@ -250,330 +298,190 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">hexo 图片路径生成问题</h1>
+            
+            
+              <div class="markdown-body">
                 
+                <p>使用hexo进行博客部署时，图片路径生成出现如下问题</p>
+<p>预期元素应该为:<br><code>&lt;img src=&quot;/img/assets.avif&quot; alt=&quot;Terraform deployment workflow&quot;&gt;</code><br>但实际是<br><code>&lt;img src=&quot;/.io//assets.avif&quot; alt=&quot;Terraform deployment workflow&quot;&gt;</code></p>
+<p>hexo版本配置信息如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash">INFO  Validating config<br>hexo: 7.2.0<br>hexo-cli: 4.3.2<br>os: darwin 23.5.0 14.5<br><br>node: 20.5.1<br>acorn: 8.10.0<br>ada: 2.5.1<br>ares: 1.19.1<br><span class="hljs-built_in">base64</span>: 0.5.0<br>brotli: 1.0.9<br>cjs_module_lexer: 1.2.2<br>cldr: 43.1<br>icu: 73.2<br>llhttp: 8.1.1<br>modules: 115<br>napi: 9<br>nghttp2: 1.55.1<br>openssl: 3.1.2<br>simdutf: 3.2.14<br>tz: 2023c<br>undici: 5.22.1<br>unicode: 15.0<br>uv: 1.46.0<br>uvwasi: 0.0.18<br>v8: 11.3.244.8-node.10<br>zlib: 1.2.11<br></code></pre></td></tr></table></figure>
 
+<p>根据网上<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/asset-folders">线索</a>，修改hexo的<code>\node_modules\hexo-asset-image\index.js </code> 26行。<br>原：<br><code>link = link.substring(beginPos, endPos) + &#39;/&#39; + appendLink;</code><br>改为(根据自己情况)：<br><code>link = &#39;img/&#39; + appendLink;</code></p>
+<p>经过 <code>hexo g</code> 后生成的图像元素即与预期元素<br><code>&lt;img src=&quot;/img/assets.avif&quot; alt=&quot;Terraform deployment workflow&quot;&gt;</code><br>相同。</p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
 
-
-
-<div class="category-list">
+<span class="category-chains">
   
   
     
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="教程"
-        id="heading-b7824d5cd41d06de995a661879fefd3d" role="tab" data-toggle="collapse" href="#collapse-b7824d5cd41d06de995a661879fefd3d"
-        aria-expanded="false"
-      >
-        教程
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>3</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-b7824d5cd41d06de995a661879fefd3d"
-           role="tabpanel" aria-labelledby="heading-b7824d5cd41d06de995a661879fefd3d">
+      <span class="category-chain">
         
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2024/05/30/2024053000/" title="在github发布自己的依赖"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">在github发布自己的依赖</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/05/16/2024051600/" title="git走全局代理"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">git走全局代理</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/05/15/2024051500/" title="使用hexo部署博客"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">使用hexo部署博客</span>
-        </a>
-      
-    
-  </div>
+  <a href="/categories/%E5%BC%82%E5%B8%B8/" class="category-chain-item">异常</a>
+  
+  
 
-        
-      </div>
+      </span>
+    
+  
+</span>
+
     </div>
   
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="异常"
-        id="heading-c195df63086a73016c53d6928444a061" role="tab" data-toggle="collapse" href="#collapse-c195df63086a73016c53d6928444a061"
-        aria-expanded="false"
-      >
-        异常
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E5%BC%82%E5%B8%B8/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>3</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-c195df63086a73016c53d6928444a061"
-           role="tabpanel" aria-labelledby="heading-c195df63086a73016c53d6928444a061">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2024/09/26/2024092600/" title="hexo 图片路径生成问题"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">hexo 图片路径生成问题</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/05/17/2024051602/" title="linux串口通信 接收信息不完整 读取不全"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">linux串口通信 接收信息不完整 读取不全</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/05/16/2024051601/" title="sed: -e expression #1, char 0: no previous regular expression"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">sed: -e expression #1, char 0: no previous regular expression</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
   
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="技术方案"
-        id="heading-4d861e69adf059c3157b943adc55906c" role="tab" data-toggle="collapse" href="#collapse-4d861e69adf059c3157b943adc55906c"
-        aria-expanded="false"
-      >
-        技术方案
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
       
-        <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>2</span>
-        </a>
+        <a href="/tags/hexo/" class="print-no-link">#hexo</a>
       
-      <div class="category-collapse collapse " id="collapse-4d861e69adf059c3157b943adc55906c"
-           role="tabpanel" aria-labelledby="heading-4d861e69adf059c3157b943adc55906c">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2024/06/04/2024060400/" title="浏览器与服务器实时通信"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">浏览器与服务器实时通信</span>
-        </a>
-      
-    
-      
-      
-        <a href="/2024/05/30/2024053001/" title="working--terraform实践"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">working--terraform实践</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="面试题"
-        id="heading-d11195cba9985a6572a41c4acf6edb33" role="tab" data-toggle="collapse" href="#collapse-d11195cba9985a6572a41c4acf6edb33"
-        aria-expanded="false"
-      >
-        面试题
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>2</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-d11195cba9985a6572a41c4acf6edb33"
-           role="tabpanel" aria-labelledby="heading-d11195cba9985a6572a41c4acf6edb33">
-        
-        
-          
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2024/06/26/2024062500/" title="goroutine 排队、调度"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">goroutine 排队、调度</span>
-        </a>
-      
-    
-  </div>
-
-          
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="基础知识"
-        id="heading-8453e91e9011ab99dfbb3b16f56ac222" role="tab" data-toggle="collapse" href="#collapse-8453e91e9011ab99dfbb3b16f56ac222"
-        aria-expanded="false"
-      >
-        基础知识
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-8453e91e9011ab99dfbb3b16f56ac222"
-           role="tabpanel" aria-labelledby="heading-8453e91e9011ab99dfbb3b16f56ac222">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2024/09/18/2024091800/" title="golang map"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">golang map</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="idea snapshot"
-        id="heading-285747d6546708b28c052d51ee662de5" role="tab" data-toggle="collapse" href="#collapse-285747d6546708b28c052d51ee662de5"
-        aria-expanded="false"
-      >
-        idea snapshot
-        <span class="list-group-count"></span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-        <a href="/categories/idea-snapshot/" class="category-count col-2 col-md-1 col-xm-1">
-          <i class="iconfont icon-articles"></i>
-          <span>1</span>
-        </a>
-      
-      <div class="category-collapse collapse " id="collapse-285747d6546708b28c052d51ee662de5"
-           role="tabpanel" aria-labelledby="heading-285747d6546708b28c052d51ee662de5">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/2024/09/12/2024091200/" title="想写的角色"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">想写的角色</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
     </div>
   
 </div>
 
 
-              </div>
-            </div>
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>hexo 图片路径生成问题</div>
+      <div>https://fatwang1.github.io/2024/09/26/2024092600/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>衣云乘风</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
           </div>
         </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/18/2024091800/" title="golang map">
+                        <span class="hidden-mobile">golang map</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
     
@@ -687,6 +595,99 @@
 
 
 
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
 

@@ -4,36 +4,11 @@
   
   
   <entry>
-    <title>hexo 图片路径生成问题</title>
-    <link href="/2024/09/26/2024092600/"/>
-    <url>/2024/09/26/2024092600/</url>
-    
-    <content type="html"><![CDATA[<p>使用hexo进行博客部署时，图片路径生成出现如下问题</p><p>预期元素应该为:<br><code>&lt;img src=&quot;/img/assets.avif&quot; alt=&quot;Terraform deployment workflow&quot;&gt;</code><br>但实际是<br><code>&lt;img src=&quot;/.io//assets.avif&quot; alt=&quot;Terraform deployment workflow&quot;&gt;</code></p><p>hexo版本配置信息如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash">INFO  Validating config<br>hexo: 7.2.0<br>hexo-cli: 4.3.2<br>os: darwin 23.5.0 14.5<br><br>node: 20.5.1<br>acorn: 8.10.0<br>ada: 2.5.1<br>ares: 1.19.1<br><span class="hljs-built_in">base64</span>: 0.5.0<br>brotli: 1.0.9<br>cjs_module_lexer: 1.2.2<br>cldr: 43.1<br>icu: 73.2<br>llhttp: 8.1.1<br>modules: 115<br>napi: 9<br>nghttp2: 1.55.1<br>openssl: 3.1.2<br>simdutf: 3.2.14<br>tz: 2023c<br>undici: 5.22.1<br>unicode: 15.0<br>uv: 1.46.0<br>uvwasi: 0.0.18<br>v8: 11.3.244.8-node.10<br>zlib: 1.2.11<br></code></pre></td></tr></table></figure><p>根据网上<a href="https://hexo.io/zh-cn/docs/asset-folders">线索</a>，修改hexo的<code>\node_modules\hexo-asset-image\index.js </code> 26行。<br>原：<br><code>link = link.substring(beginPos, endPos) + &#39;/&#39; + appendLink;</code><br>改为(根据自己情况)：<br><code>link = &#39;img/&#39; + appendLink;</code></p><p>经过 <code>hexo g</code> 后生成的图像元素即与预期元素<br><code>&lt;img src=&quot;/img/assets.avif&quot; alt=&quot;Terraform deployment workflow&quot;&gt;</code><br>相同。</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>异常</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>hexo</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>golang map</title>
-    <link href="/2024/09/18/2024091800/"/>
-    <url>/2024/09/18/2024091800/</url>
+    <link href="/2024/09/26/2024092601/"/>
+    <url>/2024/09/26/2024092601/</url>
     
-    <content type="html"><![CDATA[<ul><li><h2 id="引"><a href="#引" class="headerlink" title="引"></a>引</h2></li></ul><p>维基百科里这样定义 map：</p><blockquote><p>In computer science, an associative array, map, symbol table, or dictionary is an abstract data type composed of a collection of (key, value) pairs, such that each possible key appears at most once in the collection.</p></blockquote><ul><li><h2 id="算法基础"><a href="#算法基础" class="headerlink" title="算法基础"></a>算法基础</h2></li></ul><p>在<code>golang</code>中，map的实现主要是基于hash算法。而hash算法常常会出现碰撞的问题，一般有两种方式进行应对，一是链表地址(golang就采用了此方式)，再就是开放寻址法。</p><ul><li><h3 id="hash表-单向散列表"><a href="#hash表-单向散列表" class="headerlink" title="hash表(单向散列表)"></a>hash表(单向散列表)</h3></li></ul><p>通过建立key与elem的映射，达到高效查找key对应的elem，一般时间复杂度为O(1)。<br>举个简单的例子：</p><blockquote><p>仅用一个数组来实现哈希表。在哈希表中，我们将数组中的每个空位称为桶（bucket），每个桶可存储一个键值对。因此，查询操作就是找到 key 对应的桶，并在桶中获取 value 。<br>那么，如何基于 key 定位对应的桶呢？这是通过哈希函数（hash function）实现的。哈希函数的作用是将一个较大的输入空间映射到一个较小的输出空间<br>输入一个 key ，哈希函数的计算过程分为以下两步。</p><ol><li><p>通过某种哈希算法 hash() 计算得到哈希值。</p></li><li><p>将哈希值对桶数量（数组长度）capacity 取模，从而获取该 key 对应的数组索引 index 。<br><code>index = hash(key) % capacity</code></p></li></ol><p>随后，我们就可以利用 index 在哈希表中访问对应的桶，从而获取 value 。</p><p>设数组长度 capacity &#x3D; 100、哈希算法 hash(key) &#x3D; key ，易得哈希函数为 key % 100 。<br><img src="/img/hash_function.png"></p></blockquote><ul><li><h3 id="hash冲突"><a href="#hash冲突" class="headerlink" title="hash冲突"></a>hash冲突</h3></li></ul><p>从本质上看，哈希函数的作用是将所有 <code>key</code> 构成的输入空间映射到数组所有索引构成的输出空间，而输入空间往往远大于输出空间。因此，<strong>理论上一定存在“多个输入对应相同输出”的情况</strong>。<br>对于上述示例中的哈希函数，当输入的 <code>key</code> 后两位相同时，哈希函数的输出结果也相同。例如，查询学号为 12836 和 20336 的两个学生时，我们得到：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">12836 % 100 = 36<br>20336 % 100 = 36<br></code></pre></td></tr></table></figure><p>两个学号指向了同一个姓名，这显然是不对的。我们将这种多个输入对应同一输出的情况称为哈希冲突（hash collision）<br><img src="/img/hash_collision.png"></p><blockquote><p>解决hash冲突有两种方法</p><ol><li>链式地址<br>在原始哈希表中，每个桶仅能存储一个键值对。链式地址（separate chaining）将单个元素转换为链表，将键值对作为链表节点，将所有发生冲突的键值对都存储在同一链表中。<br><img src="/img/hash_table_chaining.png"><br>基于链式地址实现的哈希表的操作方法发生了以下变化。</li></ol><ul><li><strong>查询元素</strong>：输入 <code>key</code> ，经过哈希函数得到桶索引，即可访问链表头节点，然后遍历链表并对比 <code>key</code> 以查找目标键值对。</li><li><strong>添加元素</strong>：首先通过哈希函数访问链表头节点，然后将节点（键值对）添加到链表中。</li><li><strong>删除元素</strong>：根据哈希函数的结果访问链表头部，接着遍历链表以查找目标节点并将其删除。<br>链式地址存在以下局限性。</li><li><strong>占用空间增大</strong>：链表包含节点指针，它相比数组更加耗费内存空间。</li><li><strong>查询效率降低</strong>：因为需要线性遍历链表来查找对应元素。<br>值得注意的是，当链表很长时，查询效率 $O(n)$ 很差。<strong>此时可以将链表转换为“AVL 树”或“红黑树”</strong>，从而将查询操作的时间复杂度优化至 $O(\log n)$ 。</li></ul><ol start="2"><li>开放寻址<br><u>开放寻址（open addressing）</u>不引入额外的数据结构，而是通过“多次探测”来处理哈希冲突，探测方式主要包括线性探测、平方探测和多次哈希等。<br>下面以线性探测为例，介绍开放寻址哈希表的工作机制。<br>线性探测采用固定步长的线性搜索来进行探测，其操作方法与普通哈希表有所不同。</li></ol><ul><li><strong>插入元素</strong>：通过哈希函数计算桶索引，若发现桶内已有元素，则从冲突位置向后线性遍历（步长通常为 $1$ ），直至找到空桶，将元素插入其中。</li><li><strong>查找元素</strong>：若发现哈希冲突，则使用相同步长向后进行线性遍历，直到找到对应元素，返回 <code>value</code> 即可；如果遇到空桶，说明目标元素不在哈希表中，返回 <code>None</code> 。<br>下图展示了开放寻址（线性探测）哈希表的键值对分布。根据此哈希函数，最后两位相同的 <code>key</code> 都会被映射到相同的桶。而通过线性探测，它们被依次存储在该桶以及之下的桶中。<br><img src="/img/hash_table_linear_probing.png"><br>然而，<strong>线性探测容易产生“聚集现象”</strong>。具体来说，数组中连续被占用的位置越长，这些连续位置发生哈希冲突的可能性越大，从而进一步促使该位置的聚堆生长，形成恶性循环，最终导致增删查改操作效率劣化。<br>值得注意的是，<strong>我们不能在开放寻址哈希表中直接删除元素</strong>。这是因为删除元素会在数组内产生一个空桶 <code>None</code> ，而当查询元素时，线性探测到该空桶就会返回，因此在该空桶之下的元素都无法再被访问到，程序可能误判这些元素不存在.<br>为了解决该问题，我们可以采用<u>懒删除（lazy deletion）</u>机制：它不直接从哈希表中移除元素，<strong>而是利用一个常量 <code>TOMBSTONE</code> 来标记这个桶</strong>。在该机制下，<code>None</code> 和 <code>TOMBSTONE</code> 都代表空桶，都可以放置键值对。但不同的是，线性探测到 <code>TOMBSTONE</code> 时应该继续遍历，因为其之下可能还存在键值对。<br>然而，<strong>懒删除可能会加速哈希表的性能退化</strong>。这是因为每次删除操作都会产生一个删除标记，随着 <code>TOMBSTONE</code> 的增加，搜索时间也会增加，因为线性探测可能需要跳过多个 <code>TOMBSTONE</code> 才能找到目标元素。<br>为此，考虑在线性探测中记录遇到的首个 <code>TOMBSTONE</code> 的索引，并将搜索到的目标元素与该 <code>TOMBSTONE</code> 交换位置。这样做的好处是当每次查询或添加元素时，元素会被移动至距离理想位置（探测起始点）更近的桶，从而优化查询效率。</li></ul></blockquote><p>容易想到，哈希表容量越大，多个 key 被分配到同一个桶中的概率就越低，冲突就越少。因此，我们可以通过扩容哈希表来减少哈希冲突。</p><ul><li><h3 id="hash扩容"><a href="#hash扩容" class="headerlink" title="hash扩容"></a>hash扩容</h3></li></ul><p>类似于数组扩容，哈希表扩容需将所有键值对从原哈希表迁移至新哈希表，非常耗时；并且由于哈希表容量 <code>capacity</code> 改变，我们需要通过哈希函数来重新计算所有键值对的存储位置，这进一步增加了扩容过程的计算开销。为此，编程语言通常会预留足够大的哈希表容量，防止频繁扩容。<br>负载因子（load factor）是哈希表的一个重要概念，其定义为哈希表的元素数量除以桶数量，用于衡量哈希冲突的严重程度，<strong>也常作为哈希表扩容的触发条件</strong>。例如在 golang 中，当负载因子超过 $0.65$ 时，系统会将哈希表扩容至原先的 $2$ 倍。</p><ul><li><h2 id><a href="#" class="headerlink" title></a></h2></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>和 map 相关的操作主要是：</p><ol><li>增加一个 k-v 对 —— Add or insert；</li><li>删除一个 k-v 对 —— Remove or delete；</li><li>修改某个 k 对应的 v —— Reassign；</li><li>查询某个 k 对应的 v —— Lookup；</li></ol><p>简单说就是最基本的 <code>增删查改</code>。</p><p>Go 语言采用的是哈希查找表，并且使用链表解决哈希冲突。</p><p>表示 map 的结构体是 hmap</p><p><code>bmap</code> 就是我们常说的“桶”，桶里面会最多装 8 个 key，这些 key 之所以会落入同一个桶，是因为它们经过哈希计算后，哈希结果是“一类”的。在桶内，又会根据 key 计算出来的 hash 值的高 8 位来决定 key 到底落入桶内的哪个位置（一个桶内最多有8个位置）</p><p>每个 bucket 设计成最多只能放 8 个 key-value 对，如果有第 9 个 key-value 落入当前的 bucket，那就需要再构建一个 bucket ，通过 <code>overflow</code> 指针连接起来。<br><img src="/img/map_lookup.png"></p><p>上图中，假定 B &#x3D; 5，所以 bucket 总数就是 2^5 &#x3D; 32。首先计算出待查找 key 的哈希，使用低 5 位 <code>00110</code>，找到对应的 6 号 bucket，使用高 8 位 <code>10010111</code>，对应十进制 151，在 6 号 bucket 中寻找 tophash 值（HOB hash）为 151 的 key，找到了 2 号槽位，这样整个查找过程就结束了。</p><p>如果在 bucket 中没找到，并且 overflow 不为空，还要继续去 overflow bucket 中寻找，直到找到或是所有的 key 槽位都找遍了，包括所有的 overflow bucket。</p><h2 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h2><p>使用哈希表的目的就是要快速查找到目标 key，然而，随着向 map 中添加的 key 越来越多，key 发生碰撞的概率也越来越大。随着向 map 中添加的 key 越来越多，bucket 中的 8 个 cell 会被逐渐塞满，接近退化成链表，各种操作的效率直接降为 O(n)</p><p>需要有一个指标来衡量前面描述的情况，这就是<code>装载因子</code>。Go 源码里这样定义 <code>装载因子</code>：</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs golang">loadFactor := count / (<span class="hljs-number">2</span>^B)<br></code></pre></td></tr></table></figure><p>count 就是 map 的元素个数，2^B 表示 bucket 数量。</p><p>再来说触发 map 扩容的时机：在向 map 插入新 key 的时候，会进行条件检测，符合下面这 2 个条件，就会触发扩容：</p><ol><li>装载因子超过阈值，源码里定义的阈值是 6.5。</li><li>overflow 的 bucket 数量过多：当 B 小于 15，也就是 bucket 总数 2^B 小于 2^15 时，如果 overflow 的 bucket 数量超过 2^B；当 B &gt;&#x3D; 15，也就是 bucket 总数 2^B 大于等于 2^15，如果 overflow 的 bucket 数量超过 2^15。即：<br>B&lt;15 cnt(overflow bucket) &gt; cnt(bucket)<br>B&gt;&#x3D;15 cnt(overflow bucket) &gt; 2^15</li></ol><p>for case 1: 平均每个 bucket 中存放了超过6.5个 kv<br>for case 2: 本质上是 key 的 hash 特征趋同<br>    1 多次循环 插入大量但未达到 case 1 的元素，然后删除其中部分元素，致使出现了 大量 overflow bucket, 即 kv 不多，但 overflow bucket 很多<br>    2 就是 key 的 hash 特征恰好一致，未达到分流的效果(此时golang的扩容策略无效 因为问题不是容量的问题 是hash算法的问题 应该无解 或者做丑陋的patch)</p><p>由于 map 扩容需要将原有的 key&#x2F;value 重新搬迁到新的内存地址，如果有大量的 key&#x2F;value 需要搬迁，会非常影响性能。因此 Go map 的扩容采取了一种称为“渐进式”地方式，<strong>原有的 key 并不会一次性搬迁完毕，每次最多只会搬迁 2 个 bucket</strong>。</p><p>对于条件 1，元素太多，而 bucket 数量太少，将 B 加 1 ：<br>bucket 最大数量（2^B）直接变成原来 bucket 数量的 2 倍。就没这么简单了。要重新计算 key 的哈希，才能决定它到底落在哪个 bucket。例如，原来 B &#x3D; 5，计算出 key 的哈希后，只用看它的低 5 位，就能决定它落在哪个 bucket。扩容后，B 变成了 6，因此需要多看一位，它的低 6 位决定 key 落在哪个 bucket。这称为 <code>rehash</code>。<br><img src="/img/map_rehash.png"></p><p>对于条件 2，元素没那么多，但是 overflow bucket 数特别多，说明很多 bucket 都没装满。解决办法就是开辟一个新 bucket 空间，将老 bucket 中的元素移动到新 bucket，使得同一个 bucket 中的 key 排列地更紧密。这样，原来，在 overflow bucket 中的 key 可以移动到 bucket 中来。结果是节省空间，提高 bucket 利用率，map 的查找和插入效率自然就会提升。<br>从老的 buckets 搬迁到新的 buckets，由于 bucktes 数量不变，因此可以按序号来搬，比如原来在 0 号 bucktes，到新的地方后，仍然放在 0 号 buckets。</p><p>在搬迁过程中，oldbuckets 指针还会指向原来老的 []bmap，并且已经搬迁完毕的 key 的 tophash 值会是一个状态值，表示 key 的搬迁去向。</p><p>在插入或修改、删除 key 的时候，都会尝试进行搬迁 buckets 的工作。先检查 oldbuckets 是否搬迁完毕，具体来说就是检查 oldbuckets 是否为 nil。</p><h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>遍历所有的 bucket 以及它后面挂的 overflow bucket，然后挨个遍历 bucket 中的所有 cell。每个 bucket 中包含 8 个 cell，从有 key 的 cell 中取出 key 和 value。</p><p>开始在哪个 bucket 以及在 bucket 中哪个 cell 开始遍历是通过生成随机数 然后进行位运算决定的</p><h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>对 key 计算 hash 值，根据 hash 值按照之前的流程，找到要赋值的位置（可能是插入新 key，也可能是更新老 key）</p><h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>删除操作同样是两层循环，核心还是找到 key 的具体位置。寻找过程都是类似的，在 bucket 中挨个 cell 寻找，找到对应位置后，对 key 或者 value 进行“清零”，最后，将 count 值减 1，将对应位置的 tophash 值置成 <code>Empty</code></p><h2 id="float-类型作为key"><a href="#float-类型作为key" class="headerlink" title="float 类型作为key"></a>float 类型作为key</h2><p>float 类型可以作为 map 的 key ，当用 float64 作为 key 的时候，先要将其转成 uint64 类型，再插入 key 中。但是由于精度的问题，会导致一些诡异的问题，慎用之。</p><h2 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h2><ul><li><p>边遍历边删除，遍历的结果就可能不会是相同的了，有可能结果遍历结果集中包含了删除的 key，也有可能不包含，这取决于删除 key 的时间：是在遍历到 key 所在的 bucket 时刻前或者后</p></li><li><p>多协程并发写 会触发 <strong>concurrent map writes</strong></p></li><li><p>多协程并发读写 会触发 <strong>concurrent map read and map write</strong></p></li><li><p>多协程并发遍历&#x2F;写 会触发 <strong>concurrent map iteration and map write</strong></p></li></ul>]]></content>
     
     
     <categories>
@@ -52,6 +27,31 @@
       <tag>hash</tag>
       
       <tag>map</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>hexo 图片路径生成问题</title>
+    <link href="/2024/09/26/2024092600/"/>
+    <url>/2024/09/26/2024092600/</url>
+    
+    <content type="html"><![CDATA[<p>使用hexo进行博客部署时，图片路径生成出现如下问题</p><p>预期元素应该为:<br><code>&lt;img src=&quot;/img/assets.avif&quot; alt=&quot;Terraform deployment workflow&quot;&gt;</code><br>但实际是<br><code>&lt;img src=&quot;/.io//assets.avif&quot; alt=&quot;Terraform deployment workflow&quot;&gt;</code></p><p>hexo版本配置信息如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash">INFO  Validating config<br>hexo: 7.2.0<br>hexo-cli: 4.3.2<br>os: darwin 23.5.0 14.5<br><br>node: 20.5.1<br>acorn: 8.10.0<br>ada: 2.5.1<br>ares: 1.19.1<br><span class="hljs-built_in">base64</span>: 0.5.0<br>brotli: 1.0.9<br>cjs_module_lexer: 1.2.2<br>cldr: 43.1<br>icu: 73.2<br>llhttp: 8.1.1<br>modules: 115<br>napi: 9<br>nghttp2: 1.55.1<br>openssl: 3.1.2<br>simdutf: 3.2.14<br>tz: 2023c<br>undici: 5.22.1<br>unicode: 15.0<br>uv: 1.46.0<br>uvwasi: 0.0.18<br>v8: 11.3.244.8-node.10<br>zlib: 1.2.11<br></code></pre></td></tr></table></figure><p>根据网上<a href="https://hexo.io/zh-cn/docs/asset-folders">线索</a>，修改hexo的<code>\node_modules\hexo-asset-image\index.js </code> 26行。<br>原：<br><code>link = link.substring(beginPos, endPos) + &#39;/&#39; + appendLink;</code><br>改为(根据自己情况)：<br><code>link = &#39;img/&#39; + appendLink;</code></p><p>经过 <code>hexo g</code> 后生成的图像元素即与预期元素<br><code>&lt;img src=&quot;/img/assets.avif&quot; alt=&quot;Terraform deployment workflow&quot;&gt;</code><br>相同。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>异常</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
       
     </tags>
     
@@ -131,33 +131,6 @@
       <tag>Long-Polling</tag>
       
       <tag>WebRTC</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>working--terraform实践</title>
-    <link href="/2024/05/30/2024053001/"/>
-    <url>/2024/05/30/2024053001/</url>
-    
-    <content type="html"><![CDATA[<ul><li><h3 id="选型对比"><a href="#选型对比" class="headerlink" title="选型对比"></a>选型对比</h3></li></ul><p>之前现场需要做云上资源的运维，然后客户需要一个可靠的运维方案，经过粗筛最终决定在<code>terraform</code>和<code>ansible</code>中进行抉择。</p><table><thead><tr><th>特性</th><th>Terraform</th><th>Ansible</th></tr></thead><tbody><tr><td><strong>主要用途</strong></td><td>声明式基础设施管理，资源创建和更新</td><td>配置管理，应用部署，自动化任务</td></tr><tr><td><strong>语法</strong></td><td>HCL (HashiCorp Configuration Language) 或 JSON</td><td>YAML</td></tr><tr><td><strong>执行模型</strong></td><td>中心化的声明式，资源状态管理</td><td>分布式的任务驱动，基于事件</td></tr><tr><td><strong>资源管理</strong></td><td>明确的资源创建、更新和删除</td><td>主要关注配置状态，不直接管理资源生命周期</td></tr><tr><td><strong>多云支持</strong></td><td>广泛支持，跨平台，多云友好</td><td>支持多种云，但更侧重于本地和私有云</td></tr><tr><td><strong>依赖管理</strong></td><td>内建依赖解析，自动排序资源应用</td><td>需要手动管理依赖关系</td></tr><tr><td><strong>变更管理</strong></td><td><code>terraform plan</code> 预先查看变更，<code>apply</code> 应用变更</td><td>通过playbook执行，没有预览变更的功能</td></tr><tr><td><strong>执行方式</strong></td><td>通过命令行工具执行，需要安装Terraform CLI</td><td>通过playbook执行，通常通过Ansible Tower或SSH</td></tr><tr><td><strong>无代理部署</strong></td><td>不需要目标主机上的代理</td><td>需要在目标主机上安装Agent或使用SSH</td></tr><tr><td><strong>安全性</strong></td><td>支持访问控制，如Terraform Cloud</td><td>支持加密凭据，但需要额外的管理</td></tr><tr><td><strong>社区支持</strong></td><td>活跃的社区，丰富的模块和插件</td><td>广泛的社区，丰富的角色和模块</td></tr></tbody></table><p>对比下来，<code>terraform</code>可以对变更进行预览，也能直接管理资源，故选择<code>terraform</code>。</p><ul><li><h3 id="terraform-简述"><a href="#terraform-简述" class="headerlink" title="terraform 简述"></a>terraform 简述</h3></li></ul><p>terraform 主要是</p><p><img src="/img/assets.avif" alt="Terraform deployment workflow"></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>技术方案</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>devops</tag>
-      
-      <tag>terraform</tag>
       
     </tags>
     

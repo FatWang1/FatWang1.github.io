@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://fatwang1.github.io/img/map_lookup.png">
 <meta property="og:image" content="https://fatwang1.github.io/img/map_rehash.png">
 <meta property="article:published_time" content="2024-09-26T10:58:27.000Z">
-<meta property="article:modified_time" content="2024-09-26T03:04:43.051Z">
+<meta property="article:modified_time" content="2024-09-27T00:17:50.151Z">
 <meta property="article:author" content="衣云乘风">
 <meta property="article:tag" content="golang">
 <meta property="article:tag" content="hash">
@@ -279,7 +279,7 @@
         
         
         
-          13 分钟
+          14 分钟
         
       </span>
     
@@ -357,15 +357,12 @@
 <h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>删除操作同样是两层循环，核心还是找到 key 的具体位置。寻找过程都是类似的，在 bucket 中挨个 cell 寻找，找到对应位置后，对 key 或者 value 进行“清零”，最后，将 count 值减 1，将对应位置的 tophash 值置成 <code>Empty</code></p>
 <h2 id="float-类型作为key"><a href="#float-类型作为key" class="headerlink" title="float 类型作为key"></a>float 类型作为key</h2><p>float 类型可以作为 map 的 key ，当用 float64 作为 key 的时候，先要将其转成 uint64 类型，再插入 key 中。但是由于精度的问题，会导致一些诡异的问题，慎用之。</p>
 <h2 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h2><ul>
-<li><p>边遍历边删除，遍历的结果就可能不会是相同的了，有可能结果遍历结果集中包含了删除的 key，也有可能不包含，这取决于删除 key 的时间：是在遍历到 key 所在的 bucket 时刻前或者后</p>
-</li>
-<li><p>多协程并发写 会触发 <strong>concurrent map writes</strong></p>
-</li>
-<li><p>多协程并发读写 会触发 <strong>concurrent map read and map write</strong></p>
-</li>
-<li><p>多协程并发遍历&#x2F;写 会触发 <strong>concurrent map iteration and map write</strong></p>
-</li>
+<li>边遍历边删除，遍历的结果就可能不会是相同的了，有可能结果遍历结果集中包含了删除的 key，也有可能不包含，这取决于删除 key 的时间：是在遍历到 key 所在的 bucket 时刻前或者后</li>
+<li>多协程并发写 会触发 <strong>concurrent map writes</strong></li>
+<li>多协程并发读写 会触发 <strong>concurrent map read and map write</strong></li>
+<li>多协程并发遍历&#x2F;写 会触发 <strong>concurrent map iteration and map write</strong></li>
 </ul>
+<h2 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h2><p><a target="_blank" rel="noopener" href="https://github.com/golang-design/go-questions/tree/main/content/map">go-questions: map</a></p>
 
                 
               </div>
@@ -466,6 +463,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/09/27/2024092700/" title="golang gc">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">golang gc</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

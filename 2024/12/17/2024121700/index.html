@@ -16,28 +16,26 @@
   <meta name="author" content="衣云乘风">
   <meta name="keywords" content="这可能是一个keywords?">
   
-    <meta name="description" content="简介 Long-Polling  长轮询是一种模拟HTTP上服务器推送的技术，通过保持连接打开状态直到有新数据可用来减少不必要的网络流量。  WebSocket  WebSocket提供了一个全双工的、长期存在的连接通道，适合需要低延迟的应用场景，如实时聊天、游戏和金融交易平台。  服务器发送事件（Server-Sent Events, SSE）  服务器发送事件（Server-Sent Eve">
+    <meta name="description" content="概述  红黑树是一种自平衡二叉搜索树 (任意节点的左子树的值均小于该节点，任意节点右子树的值均大于该节点，在插入删除节点后自动调整树的结构保证树的高度平衡，即任意节点的左右子树高度差不大于1) , 红黑树的节点会有颜色区分，不是红色就是黑色。  叶子结点*(没有子结点的节点)*、根结点、空节点为黑色 红色结点的子结点为黑色 任意节点到叶子结点所有路径上的黑色结点数目一致   操作 旋转  为保证">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浏览器与服务器实时通信">
-<meta property="og:url" content="https://fatwang1.github.io/2024/06/04/2024060400/index.html">
+<meta property="og:title" content="红黑树">
+<meta property="og:url" content="https://fatwang1.github.io/2024/12/17/2024121700/index.html">
 <meta property="og:site_name" content="旅行手记">
-<meta property="og:description" content="简介 Long-Polling  长轮询是一种模拟HTTP上服务器推送的技术，通过保持连接打开状态直到有新数据可用来减少不必要的网络流量。  WebSocket  WebSocket提供了一个全双工的、长期存在的连接通道，适合需要低延迟的应用场景，如实时聊天、游戏和金融交易平台。  服务器发送事件（Server-Sent Events, SSE）  服务器发送事件（Server-Sent Eve">
+<meta property="og:description" content="概述  红黑树是一种自平衡二叉搜索树 (任意节点的左子树的值均小于该节点，任意节点右子树的值均大于该节点，在插入删除节点后自动调整树的结构保证树的高度平衡，即任意节点的左右子树高度差不大于1) , 红黑树的节点会有颜色区分，不是红色就是黑色。  叶子结点*(没有子结点的节点)*、根结点、空节点为黑色 红色结点的子结点为黑色 任意节点到叶子结点所有路径上的黑色结点数目一致   操作 旋转  为保证">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-04T09:23:43.000Z">
-<meta property="article:modified_time" content="2024-06-04T05:19:50.210Z">
+<meta property="og:image" content="https://fatwang1.github.io/img/red_black_tree_rotate.png">
+<meta property="article:published_time" content="2024-12-17T10:33:19.000Z">
+<meta property="article:modified_time" content="2024-12-17T04:22:40.749Z">
 <meta property="article:author" content="衣云乘风">
-<meta property="article:tag" content="WebSocket">
-<meta property="article:tag" content="SSE">
-<meta property="article:tag" content="WebTransport">
-<meta property="article:tag" content="Long-Polling">
-<meta property="article:tag" content="WebRTC">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fatwang1.github.io/img/red_black_tree_rotate.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>浏览器与服务器实时通信 - 旅行手记</title>
+  <title>红黑树 - 旅行手记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -244,7 +242,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="浏览器与服务器实时通信"></span>
+            <span id="subtitle" data-typed-text="红黑树"></span>
           
         </div>
 
@@ -255,8 +253,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-04 09:23" pubdate>
-          2024年6月4日 上午
+        <time datetime="2024-12-17 10:33" pubdate>
+          2024年12月17日 上午
         </time>
       </span>
     
@@ -267,7 +265,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          952 字
+          533 字
         
       </span>
     
@@ -278,7 +276,7 @@
         
         
         
-          8 分钟
+          5 分钟
         
       </span>
     
@@ -315,58 +313,43 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">浏览器与服务器实时通信</h1>
+            <h1 id="seo-header">红黑树</h1>
             
             
               <div class="markdown-body">
                 
                 <ul>
-<li><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2></li>
-<li><h3 id="Long-Polling"><a href="#Long-Polling" class="headerlink" title="Long-Polling"></a>Long-Polling</h3></li>
+<li><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2></li>
 </ul>
-<p>长轮询是一种模拟HTTP上服务器推送的技术，通过保持连接打开状态直到有新数据可用来减少不必要的网络流量。</p>
-<ul>
-<li><h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3></li>
-</ul>
-<p>WebSocket提供了一个全双工的、长期存在的连接通道，适合需要低延迟的应用场景，如实时聊天、游戏和金融交易平台。</p>
-<ul>
-<li><h3 id="服务器发送事件（Server-Sent-Events-SSE）"><a href="#服务器发送事件（Server-Sent-Events-SSE）" class="headerlink" title="服务器发送事件（Server-Sent Events, SSE）"></a>服务器发送事件（Server-Sent Events, SSE）</h3></li>
-</ul>
-<p>服务器发送事件（Server-Sent Events, SSE）是一种从服务器单向推送更新到客户端的简单方法，适用于只需要服务器更新的场景，如实时新闻源、体育比分或需要实时更新的情况。SSE在连接断开时会自动重连，管理起来比WebSocket更简单。</p>
-<ul>
-<li><h3 id="WebTransport"><a href="#WebTransport" class="headerlink" title="WebTransport"></a>WebTransport</h3></li>
-</ul>
-<p>WebTransport是一个基于HTTP&#x2F;3 QUIC协议的新兴API，旨在实现高效、低延迟的客户端和服务器通信。它支持多流传输、可靠和不可靠的数据以及乱序发送数据，适用于高性能应用，如实时游戏和流媒体。然而，WebTransport目前仍处于工作草案阶段，支持度不广。</p>
-<ul>
-<li><h3 id="WebRTC"><a href="#WebRTC" class="headerlink" title="WebRTC"></a>WebRTC</h3></li>
-</ul>
-<p>WebRTC是一个用于浏览器和移动应用之间实时通信的开源项目，支持音频、视频和数据的点对点交换，但不直接与上述技术相比较，因为它主要用于客户端之间的交互，而非服务器客户端通信。</p>
-<ul>
-<li><h2 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h2></li>
-<li>基础限制</li>
-</ul>
+<p>红黑树是一种自平衡二叉搜索树 <em>(任意节点的左子树的值均小于该节点，任意节点右子树的值均大于该节点，在插入删除节点后自动调整树的结构保证树的高度平衡，即任意节点的左右子树高度差不大于1)</em> , 红黑树的节点会有颜色区分，不是红色就是黑色。</p>
 <ol>
-<li>只有WebSocket和WebTransport支持双向通信。</li>
-<li>长轮询理论上可以双向通信，但不推荐，因为发送新数据到现有的长轮询连接会需要额外的HTTP请求。</li>
-<li>SSE不支持向服务器发送数据，只能接收服务器的初始请求，且通常不能在HTTP正文中发送POST数据，但可以使用一些库（如eventsource polyfill）来扩展其功能。</li>
+<li>叶子结点*(没有子结点的节点)*、根结点、空节点为黑色</li>
+<li>红色结点的子结点为黑色</li>
+<li>任意节点到叶子结点所有路径上的黑色结点数目一致</li>
 </ol>
 <ul>
-<li><p>浏览器的连接限制：<br>大多数现代浏览器每个域名允许六个连接，这限制了持续服务器到客户端消息传递方法的使用。尽管可以通过使用HTTP&#x2F;2或HTTP&#x2F;3来解决，这些协议使用单一连接并利用多路复用技术，但仍有默认的最大并发流设置（通常是100个并发流）。<br>在移动应用中，操作系统可能会关闭后台应用的开放连接，导致WebSocket等技术难以维持。在这种情况下，通常使用移动推送通知来更有效地发送数据。<br>企业环境中的代理和防火墙可能阻止非HTTP连接，使得WebSocket等技术难以集成，而SSE使用标准HTTP请求，可能更容易适应这些环境。</p>
-</li>
-<li><h2 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h2></li>
+<li><h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2></li>
+<li><h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3></li>
 </ul>
-<p>WebSocket、SSE和WebTransport在低延迟、高吞吐量和可扩展性方面表现相似，但WebTransport依赖于新的HTTP&#x2F;3协议，未来可能会有更多性能优化。<br>长轮询在延迟和吞吐量方面较差，因为它依赖于频繁建立新的HTTP连接。</p>
+<p>为保证二叉树平衡，在插入删除节点后可能会通过旋转操作保持平衡。<br><img src="/img/red_black_tree_rotate.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
-<li><h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2></li>
+<li><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3></li>
 </ul>
+<p>红黑树插入一个新结点的过程RB_INSERT是在二叉查找树插入过程的基础上改进的，先按照二叉排序的插入过程插入到红黑树中，然后将新插入的结点标记为红色，然后调用一个辅助的过程RB_INSERT_FIXUP来调整结点并重新着色，使得满足红黑树的性质。</p>
+<ul>
+<li><h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3></li>
+</ul>
+<p>红黑树删除结点过程是在二叉查找树删除结点过程的基础改进的。与二叉查找树类似，删除的结点分为三种情况：</p>
 <ol>
-<li>SSE适合需要频繁服务器到客户端更新的简单场景，如新闻提要和实时数据流。</li>
-<li>WebSocket适用于需要持续双向通信的应用，如游戏和聊天应用。</li>
-<li>WebTransport是未来的趋势，但目前支持度不足，适用于需要高效多流通信的场景。</li>
-<li>长轮询现在已被其他技术取代，不建议作为首选方案。</li>
+<li>无左右孩子</li>
+<li>有左孩子或者右孩子</li>
+<li>既左孩子又有右孩子</li>
 </ol>
-<p>在构建实时应用程序时，应考虑这些技术的局限性和适用场景，并确保处理可能的连接问题，如客户端重新连接时可能错过的事件，以及公司网络环境中可能遇到的代理和防火墙问题。</p>
-<h2 id="ref："><a href="#ref：" class="headerlink" title="ref："></a>ref：</h2><p><a target="_blank" rel="noopener" href="https://rxdb.info/articles/websockets-sse-polling-webrtc-webtransport.html">WebSockets vs Server-Sent-Events vs Long-Polling vs WebRTC vs WebTransport</a></p>
+<p>红黑树在删除结点后需要检查是否破坏了红黑树的性质。如果删除的结点y是红色的，则删除后的树仍然是保持红黑树的性质，因为树中各个结点的黑高度没有改变，不存在两个相邻（父结点和子结点）的红色结点，y是红色不可能是根，所有根仍然是黑色。如果删除的结点z是黑色的，则这个是破坏了红黑树的性质，需要调用RB_DELETE_FIXUP进行调整。从删除结点y的唯一孩子结点x或者是NIL处开始调整。</p>
+<ul>
+<li><h2 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h2></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wxgblogs/p/5513315.html">红黑树详解</a></p>
 
                 
               </div>
@@ -385,8 +368,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/" class="category-chain-item">技术方案</a>
+  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="category-chain-item">基础知识</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/wip/" class="category-chain-item">wip</a>
+  
+  
+
   
 
       </span>
@@ -400,15 +390,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/WebSocket/" class="print-no-link">#WebSocket</a>
-      
-        <a href="/tags/SSE/" class="print-no-link">#SSE</a>
-      
-        <a href="/tags/WebTransport/" class="print-no-link">#WebTransport</a>
-      
-        <a href="/tags/Long-Polling/" class="print-no-link">#Long-Polling</a>
-      
-        <a href="/tags/WebRTC/" class="print-no-link">#WebRTC</a>
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="print-no-link">#数据结构</a>
       
     </div>
   
@@ -420,8 +402,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>浏览器与服务器实时通信</div>
-      <div>https://fatwang1.github.io/2024/06/04/2024060400/</div>
+      <div>红黑树</div>
+      <div>https://fatwang1.github.io/2024/12/17/2024121700/</div>
     </div>
     <div class="license-meta">
       
@@ -433,7 +415,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月4日</div>
+          <div>2024年12月17日</div>
         </div>
       
       
@@ -465,18 +447,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/26/2024062500/" title="goroutine 排队、调度">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">goroutine 排队、调度</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/30/2024053001/" title="working--terraform实践">
-                        <span class="hidden-mobile">working--terraform实践</span>
+                      <a href="/2024/11/26/2024112600/" title="数据库八股">
+                        <span class="hidden-mobile">数据库八股</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

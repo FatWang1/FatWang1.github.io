@@ -24,7 +24,7 @@
 <meta property="og:description" content="三大范式 第一范式数据库表的所有字段都是不可分解的元组。  第二范式满足第一范式的情况下，所有非主键字段完全依赖整个主键。  第三范式满足第二范式情况下，所有非主键字段均不依赖其他非主键字段。  sql语句执行过程   解析：检查语法和语义，生成解析树。  预处理：参数化处理（如果有参数）。  优化：查询优化器选择最优的执行计划。  执行：按照执行计划，读写数据，对数据进行整理。  结果返回：将">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-26T09:47:41.000Z">
-<meta property="article:modified_time" content="2024-12-17T06:45:44.399Z">
+<meta property="article:modified_time" content="2024-12-19T10:52:36.390Z">
 <meta property="article:author" content="衣云乘风">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="mysql">
@@ -264,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.7k 字
+          3.8k 字
         
       </span>
     
@@ -608,6 +608,10 @@
 <li>根据分析结果进行优化</li>
 </ol>
 <ul>
+<li><h3 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h3></li>
+</ul>
+<p>垂直分库：将不同业务模块数据分离到不同数据库<br>水平分库：按照一定规则将数据分散到多个数据库<br>垂直分表：将表中不同字段按业务逻辑分离<br>水平分表：按特定规则将表数据分到多个表</p>
+<ul>
 <li><h2 id="log"><a href="#log" class="headerlink" title="log"></a>log</h2></li>
 </ul>
 <table>
@@ -751,9 +755,9 @@
 </li>
 <li><p>缺点<br>延迟、数据不一致，master负载大、网络差或者故障的情况下会有binlog同步延迟或者不能同步的问题</p>
 </li>
-<li><h3 id="如何保证主备一致"><a href="#如何保证主备一致" class="headerlink" title="如何保证主备一致"></a>如何保证主备一致</h3></li>
+<li><h3 id="如何保证主备一致"><a href="#如何保证主备一致" class="headerlink" title="如何保证主备一致"></a>如何保证主备一致</h3><p>主服务器将所有的数据更改操作记录到二进制日志（Binlog）中。<br>从服务器通过 I&#x2F;O 线程从主服务器获取 Binlog，并通过 SQL 线程应用这些日志，从而保持与主服务器的数据一致</p>
+</li>
 </ul>
-<p>主服务器将所有的数据更改操作记录到二进制日志（Binlog）中。<br>从服务器通过 I&#x2F;O 线程从主服务器获取 Binlog，并通过 SQL 线程应用这些日志，从而保持与主服务器的数据一致</p>
 
                 
               </div>

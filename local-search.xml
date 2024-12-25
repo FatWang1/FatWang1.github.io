@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>struct 内嵌 interface</title>
+    <link href="/2024/12/26/2024122600/"/>
+    <url>/2024/12/26/2024122600/</url>
+    
+    <content type="html"><![CDATA[<p>今天看context的代码时，发现了一个这样的写法</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-keyword">type</span> Context <span class="hljs-keyword">interface</span> &#123;<br><br>Deadline() (deadline time.Time, ok <span class="hljs-type">bool</span>)<br><br>Done() &lt;-<span class="hljs-keyword">chan</span> <span class="hljs-keyword">struct</span>&#123;&#125;<br><br>Err() <span class="hljs-type">error</span><br><br>Value(key any) any<br>&#125;<br><br><span class="hljs-keyword">type</span> valueCtx <span class="hljs-keyword">struct</span> &#123;<br>Context<br>key, val any<br>&#125;<br></code></pre></td></tr></table></figure><p>仔细看才发现可以通过把 interface 内嵌到 struct 中来达到不实现 interface 的全部 method 就能使用实例指代 interface。<br>示例如下:</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-keyword">type</span> Info <span class="hljs-keyword">interface</span> &#123;<br>Name() <span class="hljs-type">string</span><br>Age() <span class="hljs-type">int</span><br>&#125;<br><br><span class="hljs-keyword">type</span> Cow <span class="hljs-keyword">struct</span> &#123;<br>name <span class="hljs-type">string</span><br>Info<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(c *Cow)</span></span> Name() <span class="hljs-type">string</span> &#123;<br><span class="hljs-keyword">return</span> c.name<br>&#125;<br></code></pre></td></tr></table></figure><p>测试代码如下：</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">TestName</span><span class="hljs-params">(t *testing.T)</span></span> &#123;<br>cow := &amp;Cow&#123;<br>name: <span class="hljs-string">&quot;cc&quot;</span>,<br>&#125;<br>cl := <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i Info)</span></span> <span class="hljs-type">string</span> &#123;<br><span class="hljs-keyword">return</span> i.Name()<br>&#125;<br><br>t.Log(cl(cow))<br>&#125;<br></code></pre></td></tr></table></figure><p>输出：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">=== RUN   TestName<br>    interface_in_struct_test.go:15: cc<br>--- PASS: TestName (0.00s)<br>PASS<br></code></pre></td></tr></table></figure><p>可以清楚看到，Cow 对象没有实现 Info.Age 但是依旧可以使用实例 cow 作为入参，并能正常输出。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>golang</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>网易云音乐私有文件调整</title>
     <link href="/2024/12/25/2024122500/"/>
     <url>/2024/12/25/2024122500/</url>
@@ -13,7 +38,7 @@
     
     <categories>
       
-      <category>教程</category>
+      <category>异常</category>
       
     </categories>
     

@@ -4,6 +4,58 @@
   
   
   <entry>
+    <title>网易云音乐私有文件调整</title>
+    <link href="/2024/12/25/2024122500/"/>
+    <url>/2024/12/25/2024122500/</url>
+    
+    <content type="html"><![CDATA[<ul><li><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2></li></ul><p>最近发现自动化任务里的网易云音乐私有文件(ncm)不能直接备份为公共文件格式(flac、aac、mp3等)。</p><ul><li><h2 id="现象分析"><a href="#现象分析" class="headerlink" title="现象分析"></a>现象分析</h2></li></ul><p>把之前<a href="https://github.com/yoki123">yoki123</a>的ncmdump项目打开debug发现<br><img src="/img/WechatIMG303.jpg"><br>应该是做convention时出现了字段不匹配的问题。</p><p>解析ncm的meta信息可得</p><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;musicId&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2308549&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;musicName&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;My Heart Will Go On&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;artist&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span> <span class="hljs-punctuation">[</span> <span class="hljs-string">&quot;Céline Dion&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;50893&quot;</span> <span class="hljs-punctuation">]</span> <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;albumId&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;232952&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;album&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Complete Best&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;albumPicDocId&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;941181953423930&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;albumPic&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;http://p4.music.126.net/fiNTK9Jvhg0V8QBJx0cXPg==/941181953423930.jpg&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;bitrate&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">999000</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;mp3DocId&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0524b583bd4091bdf34be9406fb0b102&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;duration&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">280333</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;mvId&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;22617298&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;alias&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span> <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;transNames&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span> <span class="hljs-string">&quot;我心永恒&quot;</span> <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;format&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;flac&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;fee&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">8</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;volumeDelta&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">-4.4074</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;privilege&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;flag&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">2064644</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure><p>而meta结构定义为</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-keyword">type</span> Album <span class="hljs-keyword">struct</span> &#123;<br>Id       <span class="hljs-type">float64</span> <span class="hljs-string">`json:&quot;albumId&quot;`</span><br>Name     <span class="hljs-type">string</span>  <span class="hljs-string">`json:&quot;album&quot;`</span><br>CoverUrl <span class="hljs-type">string</span>  <span class="hljs-string">`json:&quot;albumPic&quot;`</span><br>&#125;<br><br><span class="hljs-keyword">type</span> Artist <span class="hljs-keyword">struct</span> &#123;<br>Name <span class="hljs-type">string</span><br>Id   <span class="hljs-type">float64</span><br>&#125;<br><br><span class="hljs-comment">// @ref https://music.163.com/#/song?id=&#123;id&#125;</span><br><span class="hljs-keyword">type</span> Meta <span class="hljs-keyword">struct</span> &#123;<br>Id       <span class="hljs-type">float64</span> <span class="hljs-string">`json:&quot;musicId&quot;`</span><br>Name     <span class="hljs-type">string</span>  <span class="hljs-string">`json:&quot;musicName&quot;`</span><br>*Album   <span class="hljs-string">`json:&quot;,inline&quot;`</span><br>Artists  []Artist <span class="hljs-string">`json:&quot;artist&quot;`</span><br>BitRate  <span class="hljs-type">float64</span>  <span class="hljs-string">`json:&quot;bitrate&quot;`</span><br>Duration <span class="hljs-type">float64</span>  <span class="hljs-string">`json:&quot;duration&quot;`</span><br>Format   <span class="hljs-type">string</span>   <span class="hljs-string">`json:&quot;format&quot;`</span><br>Comment  <span class="hljs-type">string</span>   <span class="hljs-string">`json:&quot;-&quot;`</span><br>&#125;<br><br></code></pre></td></tr></table></figure><p>发现 <code>musicId</code>、<code>albumId</code>和<code>artistId</code>从float类型调整为了string。</p><ul><li><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2></li></ul><p>将对应字段调整类型，对解析方法稍作调整，即可正常运行。<br><img src="/img/1735089687145.jpg"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>教程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>ncm</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>channel</title>
+    <link href="/2024/12/20/2024121901/"/>
+    <url>/2024/12/20/2024121901/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>面试题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>golang</tag>
+      
+      <tag>channel</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>golang GMP模型</title>
     <link href="/2024/12/20/2024121900/"/>
     <url>/2024/12/20/2024121900/</url>
@@ -40,8 +92,6 @@
     
     <categories>
       
-      <category>基础知识</category>
-      
       <category>wip</category>
       
     </categories>
@@ -68,8 +118,6 @@
     <categories>
       
       <category>面试题</category>
-      
-      <category>基础知识</category>
       
     </categories>
     
@@ -98,8 +146,6 @@
       
       <category>面试题</category>
       
-      <category>基础知识</category>
-      
     </categories>
     
     
@@ -126,8 +172,6 @@
     <categories>
       
       <category>面试题</category>
-      
-      <category>基础知识</category>
       
     </categories>
     
@@ -259,8 +303,6 @@
     
     
     <categories>
-      
-      <category>技术方案</category>
       
       <category>wip</category>
       

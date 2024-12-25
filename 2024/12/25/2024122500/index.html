@@ -16,29 +16,27 @@
   <meta name="author" content="衣云乘风">
   <meta name="keywords" content="这可能是一个keywords?">
   
-    <meta name="description" content="概述和 map 相关的操作主要是：  增加一个 k-v 对 —— Add or insert； 删除一个 k-v 对 —— Remove or delete； 修改某个 k 对应的 v —— Reassign； 查询某个 k 对应的 v —— Lookup；  简单说就是最基本的 增删查改。 Go 语言采用的是哈希查找表，并且使用链表解决哈希冲突。 表示 map 的结构体是 hmap bmap 就">
+    <meta name="description" content="问题  最近发现自动化任务里的网易云音乐私有文件(ncm)不能直接备份为公共文件格式(flac、aac、mp3等)。  现象分析  把之前yoki123的ncmdump项目打开debug发现应该是做convention时出现了字段不匹配的问题。 解析ncm的meta信息可得 123456789101112131415161718192021&#123;  &quot;musicId&quot;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="golang map">
-<meta property="og:url" content="https://fatwang1.github.io/2024/09/26/2024092601/index.html">
+<meta property="og:title" content="网易云音乐私有文件调整">
+<meta property="og:url" content="https://fatwang1.github.io/2024/12/25/2024122500/index.html">
 <meta property="og:site_name" content="旅行手记">
-<meta property="og:description" content="概述和 map 相关的操作主要是：  增加一个 k-v 对 —— Add or insert； 删除一个 k-v 对 —— Remove or delete； 修改某个 k 对应的 v —— Reassign； 查询某个 k 对应的 v —— Lookup；  简单说就是最基本的 增删查改。 Go 语言采用的是哈希查找表，并且使用链表解决哈希冲突。 表示 map 的结构体是 hmap bmap 就">
+<meta property="og:description" content="问题  最近发现自动化任务里的网易云音乐私有文件(ncm)不能直接备份为公共文件格式(flac、aac、mp3等)。  现象分析  把之前yoki123的ncmdump项目打开debug发现应该是做convention时出现了字段不匹配的问题。 解析ncm的meta信息可得 123456789101112131415161718192021&#123;  &quot;musicId&quot;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://fatwang1.github.io/img/map_lookup.png">
-<meta property="og:image" content="https://fatwang1.github.io/img/map_rehash.png">
-<meta property="article:published_time" content="2024-09-26T10:58:27.000Z">
-<meta property="article:modified_time" content="2024-12-25T01:22:44.307Z">
+<meta property="og:image" content="https://fatwang1.github.io/img/WechatIMG303.jpg">
+<meta property="og:image" content="https://fatwang1.github.io/img/1735089687145.jpg">
+<meta property="article:published_time" content="2024-12-25T09:00:00.000Z">
+<meta property="article:modified_time" content="2024-12-25T01:22:01.722Z">
 <meta property="article:author" content="衣云乘风">
-<meta property="article:tag" content="golang">
-<meta property="article:tag" content="hash">
-<meta property="article:tag" content="map">
+<meta property="article:tag" content="ncm">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fatwang1.github.io/img/map_lookup.png">
+<meta name="twitter:image" content="https://fatwang1.github.io/img/WechatIMG303.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>golang map - 旅行手记</title>
+  <title>网易云音乐私有文件调整 - 旅行手记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -245,7 +243,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="golang map"></span>
+            <span id="subtitle" data-typed-text="网易云音乐私有文件调整"></span>
           
         </div>
 
@@ -256,8 +254,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-09-26 10:58" pubdate>
-          2024年9月26日 上午
+        <time datetime="2024-12-25 09:00" pubdate>
+          2024年12月25日 上午
         </time>
       </span>
     
@@ -268,7 +266,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          310 字
         
       </span>
     
@@ -279,7 +277,7 @@
         
         
         
-          14 分钟
+          3 分钟
         
       </span>
     
@@ -316,53 +314,28 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">golang map</h1>
+            <h1 id="seo-header">网易云音乐私有文件调整</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>和 map 相关的操作主要是：</p>
-<ol>
-<li>增加一个 k-v 对 —— Add or insert；</li>
-<li>删除一个 k-v 对 —— Remove or delete；</li>
-<li>修改某个 k 对应的 v —— Reassign；</li>
-<li>查询某个 k 对应的 v —— Lookup；</li>
-</ol>
-<p>简单说就是最基本的 <code>增删查改</code>。</p>
-<p>Go 语言采用的是哈希查找表，并且使用链表解决哈希冲突。</p>
-<p>表示 map 的结构体是 hmap</p>
-<p><code>bmap</code> 就是我们常说的“桶”，桶里面会最多装 8 个 key，这些 key 之所以会落入同一个桶，是因为它们经过哈希计算后，哈希结果是“一类”的。在桶内，又会根据 key 计算出来的 hash 值的高 8 位来决定 key 到底落入桶内的哪个位置（一个桶内最多有8个位置）</p>
-<p>每个 bucket 设计成最多只能放 8 个 key-value 对，如果有第 9 个 key-value 落入当前的 bucket，那就需要再构建一个 bucket ，通过 <code>overflow</code> 指针连接起来。<br><img src="/img/map_lookup.png" srcset="/img/loading.gif" lazyload></p>
-<p>上图中，假定 B &#x3D; 5，所以 bucket 总数就是 2^5 &#x3D; 32。首先计算出待查找 key 的哈希，使用低 5 位 <code>00110</code>，找到对应的 6 号 bucket，使用高 8 位 <code>10010111</code>，对应十进制 151，在 6 号 bucket 中寻找 tophash 值（HOB hash）为 151 的 key，找到了 2 号槽位，这样整个查找过程就结束了。</p>
-<p>如果在 bucket 中没找到，并且 overflow 不为空，还要继续去 overflow bucket 中寻找，直到找到或是所有的 key 槽位都找遍了，包括所有的 overflow bucket。</p>
-<h2 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h2><p>使用哈希表的目的就是要快速查找到目标 key，然而，随着向 map 中添加的 key 越来越多，key 发生碰撞的概率也越来越大。随着向 map 中添加的 key 越来越多，bucket 中的 8 个 cell 会被逐渐塞满，接近退化成链表，各种操作的效率直接降为 O(n)</p>
-<p>需要有一个指标来衡量前面描述的情况，这就是<code>装载因子</code>。Go 源码里这样定义 <code>装载因子</code>：</p>
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs golang">loadFactor := count / (<span class="hljs-number">2</span>^B)<br></code></pre></td></tr></table></figure>
-
-<p>count 就是 map 的元素个数，2^B 表示 bucket 数量。</p>
-<p>再来说触发 map 扩容的时机：在向 map 插入新 key 的时候，会进行条件检测，符合下面这 2 个条件，就会触发扩容：</p>
-<ol>
-<li>装载因子超过阈值，源码里定义的阈值是 6.5。</li>
-<li>overflow 的 bucket 数量过多：当 B 小于 15，也就是 bucket 总数 2^B 小于 2^15 时，如果 overflow 的 bucket 数量超过 2^B；当 B &gt;&#x3D; 15，也就是 bucket 总数 2^B 大于等于 2^15，如果 overflow 的 bucket 数量超过 2^15。即：<br>B&lt;15 cnt(overflow bucket) &gt; cnt(bucket)<br>B&gt;&#x3D;15 cnt(overflow bucket) &gt; 2^15</li>
-</ol>
-<p>for case 1: 平均每个 bucket 中存放了超过6.5个 kv<br>for case 2: 本质上是 key 的 hash 特征趋同<br>    1 多次循环 插入大量但未达到 case 1 的元素，然后删除其中部分元素，致使出现了 大量 overflow bucket, 即 kv 不多，但 overflow bucket 很多<br>    2 就是 key 的 hash 特征恰好一致，未达到分流的效果(此时golang的扩容策略无效 因为问题不是容量的问题 是hash算法的问题 应该无解 或者做丑陋的patch)</p>
-<p>由于 map 扩容需要将原有的 key&#x2F;value 重新搬迁到新的内存地址，如果有大量的 key&#x2F;value 需要搬迁，会非常影响性能。因此 Go map 的扩容采取了一种称为“渐进式”地方式，<strong>原有的 key 并不会一次性搬迁完毕，每次最多只会搬迁 2 个 bucket</strong>。</p>
-<p>对于条件 1，元素太多，而 bucket 数量太少，将 B 加 1 ：<br>bucket 最大数量（2^B）直接变成原来 bucket 数量的 2 倍。就没这么简单了。要重新计算 key 的哈希，才能决定它到底落在哪个 bucket。例如，原来 B &#x3D; 5，计算出 key 的哈希后，只用看它的低 5 位，就能决定它落在哪个 bucket。扩容后，B 变成了 6，因此需要多看一位，它的低 6 位决定 key 落在哪个 bucket。这称为 <code>rehash</code>。<br><img src="/img/map_rehash.png" srcset="/img/loading.gif" lazyload></p>
-<p>对于条件 2，元素没那么多，但是 overflow bucket 数特别多，说明很多 bucket 都没装满。解决办法就是开辟一个新 bucket 空间，将老 bucket 中的元素移动到新 bucket，使得同一个 bucket 中的 key 排列地更紧密。这样，原来，在 overflow bucket 中的 key 可以移动到 bucket 中来。结果是节省空间，提高 bucket 利用率，map 的查找和插入效率自然就会提升。<br>从老的 buckets 搬迁到新的 buckets，由于 bucktes 数量不变，因此可以按序号来搬，比如原来在 0 号 bucktes，到新的地方后，仍然放在 0 号 buckets。</p>
-<p>在搬迁过程中，oldbuckets 指针还会指向原来老的 []bmap，并且已经搬迁完毕的 key 的 tophash 值会是一个状态值，表示 key 的搬迁去向。</p>
-<p>在插入或修改、删除 key 的时候，都会尝试进行搬迁 buckets 的工作。先检查 oldbuckets 是否搬迁完毕，具体来说就是检查 oldbuckets 是否为 nil。</p>
-<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>遍历所有的 bucket 以及它后面挂的 overflow bucket，然后挨个遍历 bucket 中的所有 cell。每个 bucket 中包含 8 个 cell，从有 key 的 cell 中取出 key 和 value。</p>
-<p>开始在哪个 bucket 以及在 bucket 中哪个 cell 开始遍历是通过生成随机数 然后进行位运算决定的</p>
-<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><p>对 key 计算 hash 值，根据 hash 值按照之前的流程，找到要赋值的位置（可能是插入新 key，也可能是更新老 key）</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>删除操作同样是两层循环，核心还是找到 key 的具体位置。寻找过程都是类似的，在 bucket 中挨个 cell 寻找，找到对应位置后，对 key 或者 value 进行“清零”，最后，将 count 值减 1，将对应位置的 tophash 值置成 <code>Empty</code></p>
-<h2 id="float-类型作为key"><a href="#float-类型作为key" class="headerlink" title="float 类型作为key"></a>float 类型作为key</h2><p>float 类型可以作为 map 的 key ，当用 float64 作为 key 的时候，先要将其转成 uint64 类型，再插入 key 中。但是由于精度的问题，会导致一些诡异的问题，慎用之。</p>
-<h2 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h2><ul>
-<li>边遍历边删除，遍历的结果就可能不会是相同的了，有可能结果遍历结果集中包含了删除的 key，也有可能不包含，这取决于删除 key 的时间：是在遍历到 key 所在的 bucket 时刻前或者后</li>
-<li>多协程并发写 会触发 <strong>concurrent map writes</strong></li>
-<li>多协程并发读写 会触发 <strong>concurrent map read and map write</strong></li>
-<li>多协程并发遍历&#x2F;写 会触发 <strong>concurrent map iteration and map write</strong></li>
+                <ul>
+<li><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2></li>
 </ul>
-<h2 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h2><p><a target="_blank" rel="noopener" href="https://github.com/golang-design/go-questions/tree/main/content/map">go-questions: map</a></p>
+<p>最近发现自动化任务里的网易云音乐私有文件(ncm)不能直接备份为公共文件格式(flac、aac、mp3等)。</p>
+<ul>
+<li><h2 id="现象分析"><a href="#现象分析" class="headerlink" title="现象分析"></a>现象分析</h2></li>
+</ul>
+<p>把之前<a target="_blank" rel="noopener" href="https://github.com/yoki123">yoki123</a>的ncmdump项目打开debug发现<br><img src="/img/WechatIMG303.jpg" srcset="/img/loading.gif" lazyload><br>应该是做convention时出现了字段不匹配的问题。</p>
+<p>解析ncm的meta信息可得</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;musicId&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2308549&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;musicName&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;My Heart Will Go On&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;artist&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span> <span class="hljs-punctuation">[</span> <span class="hljs-string">&quot;Céline Dion&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;50893&quot;</span> <span class="hljs-punctuation">]</span> <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;albumId&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;232952&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;album&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Complete Best&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;albumPicDocId&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;941181953423930&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;albumPic&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;http://p4.music.126.net/fiNTK9Jvhg0V8QBJx0cXPg==/941181953423930.jpg&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;bitrate&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">999000</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;mp3DocId&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0524b583bd4091bdf34be9406fb0b102&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;duration&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">280333</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;mvId&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;22617298&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;alias&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span> <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;transNames&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span> <span class="hljs-string">&quot;我心永恒&quot;</span> <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;format&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;flac&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;fee&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">8</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;volumeDelta&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">-4.4074</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;privilege&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;flag&quot;</span> <span class="hljs-punctuation">:</span> <span class="hljs-number">2064644</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>而meta结构定义为</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-keyword">type</span> Album <span class="hljs-keyword">struct</span> &#123;<br>	Id       <span class="hljs-type">float64</span> <span class="hljs-string">`json:&quot;albumId&quot;`</span><br>	Name     <span class="hljs-type">string</span>  <span class="hljs-string">`json:&quot;album&quot;`</span><br>	CoverUrl <span class="hljs-type">string</span>  <span class="hljs-string">`json:&quot;albumPic&quot;`</span><br>&#125;<br><br><span class="hljs-keyword">type</span> Artist <span class="hljs-keyword">struct</span> &#123;<br>	Name <span class="hljs-type">string</span><br>	Id   <span class="hljs-type">float64</span><br>&#125;<br><br><span class="hljs-comment">// @ref https://music.163.com/#/song?id=&#123;id&#125;</span><br><span class="hljs-keyword">type</span> Meta <span class="hljs-keyword">struct</span> &#123;<br>	Id       <span class="hljs-type">float64</span> <span class="hljs-string">`json:&quot;musicId&quot;`</span><br>	Name     <span class="hljs-type">string</span>  <span class="hljs-string">`json:&quot;musicName&quot;`</span><br>	*Album   <span class="hljs-string">`json:&quot;,inline&quot;`</span><br>	Artists  []Artist <span class="hljs-string">`json:&quot;artist&quot;`</span><br>	BitRate  <span class="hljs-type">float64</span>  <span class="hljs-string">`json:&quot;bitrate&quot;`</span><br>	Duration <span class="hljs-type">float64</span>  <span class="hljs-string">`json:&quot;duration&quot;`</span><br>	Format   <span class="hljs-type">string</span>   <span class="hljs-string">`json:&quot;format&quot;`</span><br>	Comment  <span class="hljs-type">string</span>   <span class="hljs-string">`json:&quot;-&quot;`</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>发现 <code>musicId</code>、<code>albumId</code>和<code>artistId</code>从float类型调整为了string。</p>
+<ul>
+<li><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2></li>
+</ul>
+<p>将对应字段调整类型，对解析方法稍作调整，即可正常运行。<br><img src="/img/1735089687145.jpg" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -381,7 +354,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" class="category-chain-item">面试题</a>
+  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
   
   
 
@@ -396,11 +369,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/golang/" class="print-no-link">#golang</a>
-      
-        <a href="/tags/hash/" class="print-no-link">#hash</a>
-      
-        <a href="/tags/map/" class="print-no-link">#map</a>
+        <a href="/tags/ncm/" class="print-no-link">#ncm</a>
       
     </div>
   
@@ -412,8 +381,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>golang map</div>
-      <div>https://fatwang1.github.io/2024/09/26/2024092601/</div>
+      <div>网易云音乐私有文件调整</div>
+      <div>https://fatwang1.github.io/2024/12/25/2024122500/</div>
     </div>
     <div class="license-meta">
       
@@ -425,7 +394,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年9月26日</div>
+          <div>2024年12月25日</div>
         </div>
       
       
@@ -457,18 +426,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/27/2024092700/" title="golang gc">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">golang gc</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/26/2024092600/" title="hexo 图片路径生成问题">
-                        <span class="hidden-mobile">hexo 图片路径生成问题</span>
+                      <a href="/2024/12/20/2024121901/" title="channel">
+                        <span class="hidden-mobile">channel</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

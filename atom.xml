@@ -6,7 +6,7 @@
   <link href="https://fatwang1.github.io/atom.xml" rel="self"/>
   
   <link href="https://fatwang1.github.io/"/>
-  <updated>2024-12-25T21:35:46.827Z</updated>
+  <updated>2024-12-25T21:48:32.560Z</updated>
   <id>https://fatwang1.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用私有空变量作为全局唯一key</title>
+    <link href="https://fatwang1.github.io/2024/12/26/2024122601/"/>
+    <id>https://fatwang1.github.io/2024/12/26/2024122601/</id>
+    <published>2024-12-26T05:37:54.000Z</published>
+    <updated>2024-12-25T21:48:32.560Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天看代码的时候，遇到一段：</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-keyword">type</span> keyType <span class="hljs-keyword">struct</span>&#123;&#125;<br><br><span class="hljs-keyword">var</span> ctxKey = keyType&#123;&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">FromContext</span><span class="hljs-params">(ctx context.Context)</span></span> (OrgUser, <span class="hljs-type">error</span>) &#123;<br><span class="hljs-keyword">if</span> orgUser, ok := ctx.Value(ctxKey).(OrgUser); !ok &#123;<br><span class="hljs-keyword">return</span> orgUser, errors.New(<span class="hljs-string">&quot;OrgUser not found&quot;</span>)<br>&#125; <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-keyword">return</span> orgUser, <span class="hljs-literal">nil</span><br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>细一思索发现这种实现很巧妙，虽然 ctxKey 实际上只是一个空 struct ，但是 golang 中对于值的比对分为两部分，一部分是 type ，一部分是 value ，两者完全相同，才会视为相等。<br>上述代码中，keyType 为私有类型，外部正常途径无法获得这种类型，也就避免了会有 ctx 的 key 与 ctxKey 相同，此外空 struct 也不占用额外内存。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;今天看代码的时候，遇到一段：&lt;/p&gt;
+&lt;figure class=&quot;highlight golang&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;</summary>
+      
+    
+    
+    
+    <category term="基础知识" scheme="https://fatwang1.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    
+    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    
+  </entry>
   
   <entry>
     <title>struct 内嵌 interface</title>

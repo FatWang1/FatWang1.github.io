@@ -16,26 +16,34 @@
   <meta name="author" content="衣云乘风">
   <meta name="keywords" content="这可能是一个keywords?">
   
-    <meta name="description" content="虚心实意，制怠平欲">
-<meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="https://fatwang1.github.io/archives/index.html">
+    <meta name="description" content="今天看代码的时候，遇到一段： 1234567891011type keyType struct&#123;&#125;var ctxKey &#x3D; keyType&#123;&#125;func FromContext(ctx context.Context) (OrgUser, error) &#123;	if orgUser, ok :&#x3D; ctx.Value(ctxKey).(OrgUser);">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用私有空变量作为全局唯一key">
+<meta property="og:url" content="https://fatwang1.github.io/2024/12/26/2024122601/index.html">
 <meta property="og:site_name" content="旅行手记">
-<meta property="og:description" content="虚心实意，制怠平欲">
+<meta property="og:description" content="今天看代码的时候，遇到一段： 1234567891011type keyType struct&#123;&#125;var ctxKey &#x3D; keyType&#123;&#125;func FromContext(ctx context.Context) (OrgUser, error) &#123;	if orgUser, ok :&#x3D; ctx.Value(ctxKey).(OrgUser);">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-26T05:37:54.000Z">
+<meta property="article:modified_time" content="2024-12-25T21:48:32.560Z">
 <meta property="article:author" content="衣云乘风">
-<meta property="article:tag" content="这可能是一个keywords?">
+<meta property="article:tag" content="golang">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>归档 - 旅行手记</title>
+  <title>使用私有空变量作为全局唯一key - 旅行手记</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
@@ -126,7 +134,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -232,9 +240,49 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="归档"></span>
+            <span id="subtitle" data-typed-text="使用私有空变量作为全局唯一key"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-26 05:37" pubdate>
+          2024年12月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          156 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          2 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
 
         
       </div>
@@ -250,100 +298,186 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 19 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2024</p>
-    
-    <a href="/2024/12/26/2024122601/" class="list-group-item list-group-item-action">
-      <time>12-26</time>
-      <div class="list-group-item-title">使用私有空变量作为全局唯一key</div>
-    </a>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">使用私有空变量作为全局唯一key</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>今天看代码的时候，遇到一段：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-keyword">type</span> keyType <span class="hljs-keyword">struct</span>&#123;&#125;<br><br><span class="hljs-keyword">var</span> ctxKey = keyType&#123;&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">FromContext</span><span class="hljs-params">(ctx context.Context)</span></span> (OrgUser, <span class="hljs-type">error</span>) &#123;<br>	<span class="hljs-keyword">if</span> orgUser, ok := ctx.Value(ctxKey).(OrgUser); !ok &#123;<br>		<span class="hljs-keyword">return</span> orgUser, errors.New(<span class="hljs-string">&quot;OrgUser not found&quot;</span>)<br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>		<span class="hljs-keyword">return</span> orgUser, <span class="hljs-literal">nil</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>细一思索发现这种实现很巧妙，虽然 ctxKey 实际上只是一个空 struct ，但是 golang 中对于值的比对分为两部分，一部分是 type ，一部分是 value ，两者完全相同，才会视为相等。<br>上述代码中，keyType 为私有类型，外部正常途径无法获得这种类型，也就避免了会有 ctx 的 key 与 ctxKey 相同，此外空 struct 也不占用额外内存。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
   
     
-    <a href="/2024/12/26/2024122600/" class="list-group-item list-group-item-action">
-      <time>12-26</time>
-      <div class="list-group-item-title">struct 内嵌 interface</div>
-    </a>
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="category-chain-item">基础知识</a>
   
-    
-    <a href="/2024/12/25/2024122500/" class="list-group-item list-group-item-action">
-      <time>12-25</time>
-      <div class="list-group-item-title">网易云音乐私有文件调整</div>
-    </a>
   
+
+      </span>
     
-    <a href="/2024/12/20/2024121901/" class="list-group-item list-group-item-action">
-      <time>12-19</time>
-      <div class="list-group-item-title">channel</div>
-    </a>
   
-    
-    <a href="/2024/12/20/2024121900/" class="list-group-item list-group-item-action">
-      <time>12-19</time>
-      <div class="list-group-item-title">golang GMP模型</div>
-    </a>
+</span>
+
+    </div>
   
-    
-    <a href="/2024/12/17/2024121700/" class="list-group-item list-group-item-action">
-      <time>12-17</time>
-      <div class="list-group-item-title">红黑树</div>
-    </a>
   
-    
-    <a href="/2024/11/26/2024112600/" class="list-group-item list-group-item-action">
-      <time>11-26</time>
-      <div class="list-group-item-title">数据库八股</div>
-    </a>
-  
-    
-    <a href="/2024/09/27/2024092700/" class="list-group-item list-group-item-action">
-      <time>09-27</time>
-      <div class="list-group-item-title">golang gc</div>
-    </a>
-  
-    
-    <a href="/2024/09/26/2024092601/" class="list-group-item list-group-item-action">
-      <time>09-26</time>
-      <div class="list-group-item-title">golang map</div>
-    </a>
-  
-    
-    <a href="/2024/09/26/2024092600/" class="list-group-item list-group-item-action">
-      <time>09-26</time>
-      <div class="list-group-item-title">hexo 图片路径生成问题</div>
-    </a>
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/golang/" class="print-no-link">#golang</a>
+      
+    </div>
   
 </div>
 
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/#board">2</a><a class="extend next" rel="next" href="/archives/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
+              
+  
 
-
-
-
-              </div>
-            </div>
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>使用私有空变量作为全局唯一key</div>
+      <div>https://fatwang1.github.io/2024/12/26/2024122601/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>衣云乘风</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
           </div>
         </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/26/2024122600/" title="struct 内嵌 interface">
+                        <span class="hidden-mobile">struct 内嵌 interface</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
       </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
     
@@ -457,6 +591,99 @@
 
 
 
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
 

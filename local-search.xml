@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>使用私有空变量作为全局唯一key</title>
+    <link href="/2024/12/26/2024122601/"/>
+    <url>/2024/12/26/2024122601/</url>
+    
+    <content type="html"><![CDATA[<p>今天看代码的时候，遇到一段：</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-keyword">type</span> keyType <span class="hljs-keyword">struct</span>&#123;&#125;<br><br><span class="hljs-keyword">var</span> ctxKey = keyType&#123;&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">FromContext</span><span class="hljs-params">(ctx context.Context)</span></span> (OrgUser, <span class="hljs-type">error</span>) &#123;<br><span class="hljs-keyword">if</span> orgUser, ok := ctx.Value(ctxKey).(OrgUser); !ok &#123;<br><span class="hljs-keyword">return</span> orgUser, errors.New(<span class="hljs-string">&quot;OrgUser not found&quot;</span>)<br>&#125; <span class="hljs-keyword">else</span> &#123;<br><span class="hljs-keyword">return</span> orgUser, <span class="hljs-literal">nil</span><br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>细一思索发现这种实现很巧妙，虽然 ctxKey 实际上只是一个空 struct ，但是 golang 中对于值的比对分为两部分，一部分是 type ，一部分是 value ，两者完全相同，才会视为相等。<br>上述代码中，keyType 为私有类型，外部正常途径无法获得这种类型，也就避免了会有 ctx 的 key 与 ctxKey 相同，此外空 struct 也不占用额外内存。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>golang</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>struct 内嵌 interface</title>
     <link href="/2024/12/26/2024122600/"/>
     <url>/2024/12/26/2024122600/</url>

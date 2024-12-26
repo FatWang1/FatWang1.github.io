@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>对象构造方法</title>
+    <link href="/2024/12/27/2024122700/"/>
+    <url>/2024/12/27/2024122700/</url>
+    
+    <content type="html"><![CDATA[<p>有以下名为 Server 的类型。</p><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-keyword">type</span> Server <span class="hljs-keyword">struct</span> &#123;<br>Port     <span class="hljs-type">int</span><br>Protocol <span class="hljs-type">string</span><br>&#125;<br></code></pre></td></tr></table></figure><ul><li><h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2></li></ul><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewServer</span><span class="hljs-params">(port <span class="hljs-type">int</span>, protocol <span class="hljs-type">string</span>)</span></span> *Server&#123;<br><span class="hljs-keyword">return</span> &amp;Server&#123;<br>Port: port,<br>Protocol: protocol,<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>简单直接，参数少的时候很常用。</p><ul><li><h2 id="functional-option"><a href="#functional-option" class="headerlink" title="functional-option"></a>functional-option</h2></li></ul><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-keyword">type</span> Option <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(server *Server)</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">WithPort</span><span class="hljs-params">(port <span class="hljs-type">int</span>)</span></span> Option &#123;<br><span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(server *Server)</span></span> &#123;<br>server.Port = port<br>&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">WithProtocol</span><span class="hljs-params">(protocol <span class="hljs-type">string</span>)</span></span> Option &#123;<br><span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(server *Server)</span></span> &#123;<br>server.Protocol = protocol<br>&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewServerWithOption</span><span class="hljs-params">(options ...Option)</span></span> *Server &#123;<br>server := &amp;Server&#123;&#125;<br><span class="hljs-keyword">for</span> _, option := <span class="hljs-keyword">range</span> options &#123;<br>option(server)<br>&#125;<br><span class="hljs-keyword">return</span> server<br>&#125;<br></code></pre></td></tr></table></figure><p>直观，拓展性好，新增属性时只需要添加代码即可，不需要修改原有构造对象的代码。</p><ul><li><h2 id="builder"><a href="#builder" class="headerlink" title="builder"></a>builder</h2></li></ul><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs golang"><span class="hljs-keyword">type</span> ServerBuilder <span class="hljs-keyword">struct</span> &#123;<br>option Server<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewServerBuilder</span><span class="hljs-params">()</span></span> *ServerBuilder &#123;<br><span class="hljs-keyword">return</span> &amp;ServerBuilder&#123;&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(b *ServerBuilder)</span></span> WithPort(port <span class="hljs-type">int</span>) *ServerBuilder &#123;<br>b.option.Port = port<br><span class="hljs-keyword">return</span> b<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(b *ServerBuilder)</span></span> WithProtocol(protocol <span class="hljs-type">string</span>) *ServerBuilder &#123;<br>b.option.Protocol = protocol<br><span class="hljs-keyword">return</span> b<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(b *ServerBuilder)</span></span> Build() *Server &#123;<br><span class="hljs-keyword">return</span> &amp;b.option<br>&#125;<br></code></pre></td></tr></table></figure><p>适合复杂对象的构造，因为支持链式调用，所以需要分布进行构造对象时为首选。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>基础知识</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>golang</tag>
+      
+      <tag>设计模式</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>使用私有空变量作为全局唯一key</title>
     <link href="/2024/12/26/2024122601/"/>
     <url>/2024/12/26/2024122601/</url>

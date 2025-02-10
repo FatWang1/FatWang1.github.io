@@ -216,7 +216,7 @@
     <link href="/2024/09/27/2024092700/"/>
     <url>/2024/09/27/2024092700/</url>
     
-    <content type="html"><![CDATA[<h2 id="goroutine-对比-threrad"><a href="#goroutine-对比-threrad" class="headerlink" title="goroutine 对比 threrad"></a>goroutine 对比 threrad</h2><table><thead><tr><th></th><th>goroutine</th><th>thread</th></tr></thead><tbody><tr><td>内存占用</td><td>2KB</td><td>1MB</td></tr><tr><td>创建销毁</td><td>用户级，go runtime负责管理</td><td>系统级</td></tr><tr><td>切换</td><td>3个寄存器，200ns，约2400～3600条指令时间</td><td>16个寄存器，1000～1500ns，12000～18000指令时间</td></tr></tbody></table><ol><li><p><strong>Go语言使用了哪种垃圾回收算法？</strong></p><ul><li>Go语言采用了三色标记清除算法，并结合写屏障技术来提高并发性。从Go 1.5开始引入了并发垃圾收集器，之后版本不断优化以减少停顿时间。</li></ul></li><li><p><strong>解释一下三色标记法的工作原理？</strong></p><ul><li>三色标记法将对象分为白色、黑色和灰色三种状态：<ul><li>白色：表示未访问过的对象。</li><li>灰色：表示已经被发现但其引用的对象还未全部检查的对象。</li><li>黑色：表示已经完全扫描过且确定为存活的对象。</li></ul></li><li>在GC过程中，所有可达对象最终会被标记为黑色，而仅存的白色对象则被认为是垃圾并被回收。</li></ul></li><li><p><strong>如何触发垃圾回收？</strong></p><ul><li>Go语言的GC是自动触发的，基于分配速率和堆大小的增长情况。也可以通过调用<code>runtime.GC()</code>手动触发一次完整的垃圾回收过程。</li></ul></li><li><p><strong>Go语言中的GC是并发的还是串行的？</strong></p><ul><li>Go语言的GC是并发的，这意味着它可以与应用程序代码同时运行，从而尽量减少对程序执行的影响。不过，在某些阶段仍需要短暂地暂停所有的goroutine（称为”STW”, Stop-The-World），以便安全地完成特定的操作。</li></ul></li><li><p><strong>什么是写屏障？为什么需要它？</strong></p><ul><li>写屏障是在对象之间建立或更新引用时插入的一段辅助代码。它的作用是在并发GC期间确保所有活跃对象都能被正确地标记，即使这些对象正在被修改。</li></ul></li><li><p><strong>GC Roots是什么？</strong><br>GC Roots是指那些可以直接访问到的对象集合，</p><ul><li>全局变量</li><li>活跃的goroutine的栈上的所有引用</li><li>runtime的部分数据</li></ul></li><li><p><strong>堆栈上分别会有哪些数据</strong><br> 堆上：</p><ul><li>不会发生逃逸的局部变量</li><li>小型且大小固定的结构体、数组<br> 栈上：</li><li>make、new创建的对象</li><li>大型的数据 大结构体、大数组</li><li>切片 map channel，基本信息比如长度、容量、指针可能在栈上，实际的数据会在堆上</li><li>逃逸的对象</li></ul></li><li><p><strong>什么情况会发生逃逸</strong><br>局部对象的作用域发生改变、扩散就会发生逃逸</p></li></ol><ul><li>函数返回了期内局部变量的指针</li><li>局部变量被全局变量持有指针</li><li>局部变量的指针被传递给另外一个goroutine</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="goroutine-对比-threrad"><a href="#goroutine-对比-threrad" class="headerlink" title="goroutine 对比 threrad"></a>goroutine 对比 threrad</h2><table><thead><tr><th></th><th>goroutine</th><th>thread</th></tr></thead><tbody><tr><td>内存占用</td><td>2KB</td><td>1MB</td></tr><tr><td>创建销毁</td><td>用户级，go runtime负责管理</td><td>系统级</td></tr><tr><td>切换</td><td>3个寄存器，200ns，约2400～3600条指令时间</td><td>16个寄存器，1000～1500ns，12000～18000指令时间</td></tr></tbody></table><ol><li><p><strong>Go语言使用了哪种垃圾回收算法？</strong></p><ul><li>Go语言采用了三色标记清除算法，并结合写屏障技术来提高并发性。从Go 1.5开始引入了并发垃圾收集器，之后版本不断优化以减少停顿时间。</li></ul></li><li><p><strong>解释一下三色标记法的工作原理？</strong></p><ul><li>三色标记法将对象分为白色、黑色和灰色三种状态：<ul><li>白色：表示未访问过的对象。</li><li>灰色：表示已经被发现但其引用的对象还未全部检查的对象。</li><li>黑色：表示已经完全扫描过且确定为存活的对象。</li></ul></li><li>在GC过程中，所有可达对象最终会被标记为黑色，而仅存的白色对象则被认为是垃圾并被回收。</li></ul></li><li><p><strong>如何触发垃圾回收？</strong></p><ul><li>Go语言的GC是自动触发的，基于分配速率和堆大小的增长情况。也可以通过调用<code>runtime.GC()</code>手动触发一次完整的垃圾回收过程。</li></ul></li><li><p><strong>Go语言中的GC是并发的还是串行的？</strong></p><ul><li>Go语言的GC是并发的，这意味着它可以与应用程序代码同时运行，从而尽量减少对程序执行的影响。不过，在某些阶段仍需要短暂地暂停所有的goroutine（称为”STW”, Stop-The-World），以便安全地完成特定的操作。</li></ul></li><li><p><strong>什么是写屏障？为什么需要它？</strong></p><ul><li>写屏障是在对象之间建立或更新引用时插入的一段辅助代码。它的作用是在并发GC期间确保所有活跃对象都能被正确地标记，即使这些对象正在被修改。</li></ul></li><li><p><strong>GC Roots是什么？</strong><br>GC Roots是指那些可以直接访问到的对象集合，</p><ul><li>全局变量</li><li>活跃的goroutine的栈上的所有引用</li><li>runtime的部分数据</li></ul></li><li><p><strong>堆栈上分别会有哪些数据</strong><br> 堆上：</p><ul><li>不会发生逃逸的局部变量</li><li>小型且大小固定的结构体、数组</li></ul><p> 栈上：</p><ul><li>make、new创建的对象</li><li>大型的数据 大结构体、大数组</li><li>切片 map channel，基本信息比如长度、容量、指针可能在栈上，实际的数据会在堆上</li><li>逃逸的对象</li></ul></li><li><p><strong>什么情况会发生逃逸</strong><br>局部对象的作用域发生改变、扩散就会发生逃逸</p></li></ol><ul><li>函数返回了期内局部变量的指针</li><li>局部变量被全局变量持有指针</li><li>局部变量的指针被传递给另外一个goroutine</li></ul>]]></content>
     
     
     <categories>
@@ -444,9 +444,9 @@
     
     <tags>
       
-      <tag>串口通信</tag>
-      
       <tag>linux</tag>
+      
+      <tag>串口通信</tag>
       
       <tag>c++</tag>
       
@@ -473,9 +473,9 @@
     
     <tags>
       
-      <tag>linux</tag>
-      
       <tag>sed</tag>
+      
+      <tag>linux</tag>
       
       <tag>shell</tag>
       

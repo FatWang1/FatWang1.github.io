@@ -45,7 +45,6 @@ https://fatwang1.github.io/tags/WebRTC/
 https://fatwang1.github.io/tags/groutine/
 https://fatwang1.github.io/tags/hash/
 https://fatwang1.github.io/tags/map/
-https://fatwang1.github.io/tags/gc/
 https://fatwang1.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/
 https://fatwang1.github.io/tags/mysql/
 https://fatwang1.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/
@@ -53,6 +52,7 @@ https://fatwang1.github.io/tags/GMP%E6%A8%A1%E5%9E%8B/
 https://fatwang1.github.io/tags/channel/
 https://fatwang1.github.io/tags/ncm/
 https://fatwang1.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/
+https://fatwang1.github.io/tags/gc/
 https://fatwang1.github.io/categories/%E6%95%99%E7%A8%8B/
 https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/
 https://fatwang1.github.io/categories/wip/

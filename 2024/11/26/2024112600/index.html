@@ -24,7 +24,7 @@
 <meta property="og:description" content="三大范式 第一范式数据库表的所有字段都是不可分解的元组。  第二范式满足第一范式的情况下，所有非主键字段完全依赖整个主键。  第三范式满足第二范式情况下，所有非主键字段均不依赖其他非主键字段。  sql语句执行过程   解析：检查语法和语义，生成解析树。  预处理：参数化处理（如果有参数）。  优化：查询优化器选择最优的执行计划。  执行：按照执行计划，读写数据，对数据进行整理。  结果返回：将">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-26T09:47:41.000Z">
-<meta property="article:modified_time" content="2024-12-25T01:22:33.773Z">
+<meta property="article:modified_time" content="2025-02-12T02:49:08.744Z">
 <meta property="article:author" content="衣云乘风">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="mysql">
@@ -722,7 +722,7 @@
 <li><h3 id="InnoDB如何保证事务的原子性、持久性和一致性"><a href="#InnoDB如何保证事务的原子性、持久性和一致性" class="headerlink" title="InnoDB如何保证事务的原子性、持久性和一致性"></a>InnoDB如何保证事务的原子性、持久性和一致性</h3></li>
 </ul>
 <ol>
-<li>利用undo log保障原子性。该log保存了事务发生之前的数据的一个版本，可以用于回滚，从而保证事务<br>原子性。</li>
+<li>利用undo log保障原子性。该log保存了事务发生之前的数据的一个版本，可以用于回滚，从而保证事务原子性。</li>
 <li>利用redo log保证事务的持久性，该log关注于事务的恢复。在重启mysql服务的时候，根据redo log进行重做，从而使事务有持久性。</li>
 <li>利用undo log+redo log保障一致性。事务中的执行需要redo log，如果执行失败，需要undo log 回滚。</li>
 </ol>

@@ -6,7 +6,7 @@
   <link href="https://fatwang1.github.io/atom.xml" rel="self"/>
   
   <link href="https://fatwang1.github.io/"/>
-  <updated>2025-09-06T22:49:38.020Z</updated>
+  <updated>2025-09-06T22:50:48.506Z</updated>
   <id>https://fatwang1.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>viper包加载驼峰字段配置失败</title>
+    <title>viper包加载蛇形字段配置失败</title>
     <link href="https://fatwang1.github.io/2025/09/07/2025090700/"/>
     <id>https://fatwang1.github.io/2025/09/07/2025090700/</id>
     <published>2025-09-07T06:08:17.000Z</published>
-    <updated>2025-09-06T22:49:38.020Z</updated>
+    <updated>2025-09-06T22:50:48.506Z</updated>
     
     <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>今天在使用 <code>github.com/spf13/viper</code> 加载配置文件时突然发现有几个字段的值始终无法正常加载，大致形如</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Config <span class="hljs-keyword">struct</span> &#123;<br>Name   <span class="hljs-type">string</span> <span class="hljs-string">`yaml:&quot;name&quot;`</span><br>UserId <span class="hljs-type">int</span>    <span class="hljs-string">`yaml:&quot;user_id&quot;`</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">GetSnakeValue</span><span class="hljs-params">()</span></span> Config &#123;<br>v := viper.New()<br>v.Set(<span class="hljs-string">&quot;user_id&quot;</span>, <span class="hljs-number">1</span>)<br>v.Set(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;victor&quot;</span>)<br><span class="hljs-keyword">var</span> cfg Config<br>err := v.Unmarshal(&amp;cfg)<br><span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;<br><span class="hljs-built_in">panic</span>(err)<br>&#125;<br><span class="hljs-keyword">return</span> cfg<br>&#125;<br></code></pre></td></tr></table></figure><p>执行结果如下：</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs go">Config&#123;<br>Name:   <span class="hljs-string">&quot;victor&quot;</span>,<br>UserId: <span class="hljs-number">0</span><br>&#125;<br></code></pre></td></tr></table></figure><p>明显不符合预期：</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs go">Config&#123;<br>Name:   <span class="hljs-string">&quot;victor&quot;</span>,<br>UserId: <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure><h2 id="现象分析"><a href="#现象分析" class="headerlink" title="现象分析"></a>现象分析</h2><ol><li><code>Config.Name</code> 可以正常加载，那说明 <code>viper</code> 正常工作了</li><li>在断点中可以看到 <code>user_id</code> 正常加载，继续断点下去是一些反射代码，没法直观分析<img src="/img/2025090700-01.png"></li><li><code>Config.UserId</code> 无法正常加载，那么说明在decode时失败</li></ol><p>根据网上资料得知，<code>viper.Unmarshal</code> 底层其实是用 <code>mapstructure.Decode</code>，但它对 tag、key 的处理有自己的默认行为：</p><ul><li>会把所有 key 转换成 <strong>小写</strong>。</li><li>默认不会启用 <code>WeaklyTypedInput</code>、<code>Squash</code> 等高级选项。</li><li>不会自动启用驼峰 → 下划线的映射。</li></ul><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>知道了原因，那么就可以按图索骥。</p><ol><li><p>将tag的value改为驼峰写法，<code>userId</code>这样就可以正常解析</p></li><li><p>添加<strong>mapstructure</strong>  tag 让<code>mapstructure.Decode</code>知道 <code>user_id</code>对应的 struct field，如：</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Config <span class="hljs-keyword">struct</span> &#123;<br>Name   <span class="hljs-type">string</span> <span class="hljs-string">`yaml:&quot;name&quot;`</span><br>UserId <span class="hljs-type">int</span>    <span class="hljs-string">`yaml:&quot;user_id&quot; mapstructure:&quot;user_id&quot;`</span><br>&#125;<br></code></pre></td></tr></table></figure></li><li><p>在调用<code>func (v *Viper) Unmarshal(rawVal any, opts ...DecoderConfigOption) error</code>时，设置<code>DecoderConfigOption</code></p></li></ol>]]></content>
     
@@ -508,9 +508,9 @@
     <category term="异常" scheme="https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
     
     
-    <category term="串口通信" scheme="https://fatwang1.github.io/tags/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/"/>
-    
     <category term="linux" scheme="https://fatwang1.github.io/tags/linux/"/>
+    
+    <category term="串口通信" scheme="https://fatwang1.github.io/tags/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/"/>
     
     <category term="c++" scheme="https://fatwang1.github.io/tags/c/"/>
     
@@ -537,9 +537,9 @@
     <category term="异常" scheme="https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
     
     
-    <category term="linux" scheme="https://fatwang1.github.io/tags/linux/"/>
-    
     <category term="sed" scheme="https://fatwang1.github.io/tags/sed/"/>
+    
+    <category term="linux" scheme="https://fatwang1.github.io/tags/linux/"/>
     
     <category term="shell" scheme="https://fatwang1.github.io/tags/shell/"/>
     

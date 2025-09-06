@@ -4,7 +4,7 @@
   
   
   <entry>
-    <title>viper包加载驼峰字段配置失败</title>
+    <title>viper包加载蛇形字段配置失败</title>
     <link href="/2025/09/07/2025090700/"/>
     <url>/2025/09/07/2025090700/</url>
     
@@ -469,9 +469,9 @@
     
     <tags>
       
-      <tag>串口通信</tag>
-      
       <tag>linux</tag>
+      
+      <tag>串口通信</tag>
       
       <tag>c++</tag>
       
@@ -498,9 +498,9 @@
     
     <tags>
       
-      <tag>linux</tag>
-      
       <tag>sed</tag>
+      
+      <tag>linux</tag>
       
       <tag>shell</tag>
       

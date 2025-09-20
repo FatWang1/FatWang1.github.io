@@ -278,7 +278,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2025/09/21/2025092000/" target="_self">
         <div>
-          概述  根据官网对defer的描述，  defer func()的存储结构是栈，即FILO，有多次defer调用时遵循先进后出的逻辑进行执行  而go中return的逻辑如下   先将返回值赋值 执行 defer 栈 返回调用函数‘    举个栗子  123456789func demo() (res int) &#123;	for i := 1; i &lt; 4; i++ &#123;		d
+          概述  根据官网对defer的描述，  defer func()的存储结构是栈，即LIFO，有多次defer调用时遵循后进先出的逻辑进行执行  而go中return的逻辑如下   先将返回值赋值 执行 defer 栈 返回调用函数    举个栗子  123456789func demo() (res int) &#123;	for i := 1; i &lt; 4; i++ &#123;		de
         </div>
       </a>
 

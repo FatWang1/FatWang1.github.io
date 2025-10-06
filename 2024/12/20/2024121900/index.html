@@ -19,7 +19,7 @@
     <meta name="description" content="概述 G — 表示 Goroutine，它是一个待执行的任务；  M — 表示操作系统线程，它由操作系统的调度器调度和管理，实际承载goroutine的运行；  P — 表示逻辑处理器，它可以被看做运行在线程上的本地调度器。  M:N模型  Runtime 会在程序启动的时候，创建 M 个线程（CPU 执行调度的单位），之后创建的 N 个 goroutine 都会依附在这 M 个线程上执行。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="golang GMP模型">
-<meta property="og:url" content="https://fatwang1.github.io/2024/12/20/2024121900/index.html">
+<meta property="og:url" content="https://victorwong171.github.io/2024/12/20/2024121900/index.html">
 <meta property="og:site_name" content="旅行手记">
 <meta property="og:description" content="概述 G — 表示 Goroutine，它是一个待执行的任务；  M — 表示操作系统线程，它由操作系统的调度器调度和管理，实际承载goroutine的运行；  P — 表示逻辑处理器，它可以被看做运行在线程上的本地调度器。  M:N模型  Runtime 会在程序启动的时候，创建 M 个线程（CPU 执行调度的单位），之后创建的 N 个 goroutine 都会依附在这 M 个线程上执行。">
 <meta property="og:locale" content="zh_CN">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"fatwang1.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":"1c355ab5ac92aab9bdf3607a973467ac","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"victorwong171.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":"1c355ab5ac92aab9bdf3607a973467ac","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -406,7 +406,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>golang GMP模型</div>
-      <div>https://fatwang1.github.io/2024/12/20/2024121900/</div>
+      <div>https://victorwong171.github.io/2024/12/20/2024121900/</div>
     </div>
     <div class="license-meta">
       

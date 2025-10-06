@@ -3,11 +3,11 @@
   <title>旅行手记</title>
   
   <subtitle>逐风之旅</subtitle>
-  <link href="https://fatwang1.github.io/atom.xml" rel="self"/>
+  <link href="https://victorwong171.github.io/atom.xml" rel="self"/>
   
-  <link href="https://fatwang1.github.io/"/>
-  <updated>2025-09-20T12:31:44.452Z</updated>
-  <id>https://fatwang1.github.io/</id>
+  <link href="https://victorwong171.github.io/"/>
+  <updated>2025-09-20T13:19:59.513Z</updated>
+  <id>https://victorwong171.github.io/</id>
   
   <author>
     <name>衣云乘风</name>
@@ -17,9 +17,42 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>标准库context:协作式goroutine管理工具</title>
+    <link href="https://victorwong171.github.io/2025/09/21/2025092001/"/>
+    <id>https://victorwong171.github.io/2025/09/21/2025092001/</id>
+    <published>2025-09-20T20:48:23.000Z</published>
+    <updated>2025-09-20T13:19:59.513Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2></li></ul><p>在goroutine的应用中，有些经典场景如：<strong>超时控制、派生goroutine管理、通用上下文传递</strong>等，因此官方在1.7版本引入了context库来提供便捷的解决方案。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在goroutine的应用中，有些经典场景如：&lt;strong&gt;超时控制、派生goroutine管理</summary>
+      
+    
+    
+    
+    <category term="标准库" scheme="https://victorwong171.github.io/categories/%E6%A0%87%E5%87%86%E5%BA%93/"/>
+    
+    <category term="面试题" scheme="https://victorwong171.github.io/categories/%E6%A0%87%E5%87%86%E5%BA%93/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+    
+    <category term="go" scheme="https://victorwong171.github.io/tags/go/"/>
+    
+    <category term="context" scheme="https://victorwong171.github.io/tags/context/"/>
+    
+    <category term="goroutine" scheme="https://victorwong171.github.io/tags/goroutine/"/>
+    
+  </entry>
+  
+  <entry>
     <title>defer的执行逻辑</title>
-    <link href="https://fatwang1.github.io/2025/09/21/2025092000/"/>
-    <id>https://fatwang1.github.io/2025/09/21/2025092000/</id>
+    <link href="https://victorwong171.github.io/2025/09/21/2025092000/"/>
+    <id>https://victorwong171.github.io/2025/09/21/2025092000/</id>
     <published>2025-09-20T19:47:05.000Z</published>
     <updated>2025-09-20T12:31:44.452Z</updated>
     
@@ -36,19 +69,19 @@
     
     
     
-    <category term="基础知识" scheme="https://fatwang1.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    <category term="基础知识" scheme="https://victorwong171.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     
-    <category term="面试题" scheme="https://fatwang1.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="面试题" scheme="https://victorwong171.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
     
-    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    <category term="golang" scheme="https://victorwong171.github.io/tags/golang/"/>
     
   </entry>
   
   <entry>
     <title>viper包加载蛇形字段配置失败</title>
-    <link href="https://fatwang1.github.io/2025/09/07/2025090700/"/>
-    <id>https://fatwang1.github.io/2025/09/07/2025090700/</id>
+    <link href="https://victorwong171.github.io/2025/09/07/2025090700/"/>
+    <id>https://victorwong171.github.io/2025/09/07/2025090700/</id>
     <published>2025-09-07T06:08:17.000Z</published>
     <updated>2025-09-06T22:50:48.506Z</updated>
     
@@ -62,17 +95,17 @@
     
     
     
-    <category term="异常" scheme="https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
+    <category term="异常" scheme="https://victorwong171.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
     
     
-    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    <category term="golang" scheme="https://victorwong171.github.io/tags/golang/"/>
     
   </entry>
   
   <entry>
     <title>对象构造方法</title>
-    <link href="https://fatwang1.github.io/2024/12/27/2024122700/"/>
-    <id>https://fatwang1.github.io/2024/12/27/2024122700/</id>
+    <link href="https://victorwong171.github.io/2024/12/27/2024122700/"/>
+    <id>https://victorwong171.github.io/2024/12/27/2024122700/</id>
     <published>2024-12-27T05:49:31.000Z</published>
     <updated>2024-12-26T22:14:22.386Z</updated>
     
@@ -87,19 +120,19 @@
     
     
     
-    <category term="基础知识" scheme="https://fatwang1.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    <category term="基础知识" scheme="https://victorwong171.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     
     
-    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    <category term="golang" scheme="https://victorwong171.github.io/tags/golang/"/>
     
-    <category term="设计模式" scheme="https://fatwang1.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <category term="设计模式" scheme="https://victorwong171.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>使用私有空变量作为全局唯一key</title>
-    <link href="https://fatwang1.github.io/2024/12/26/2024122601/"/>
-    <id>https://fatwang1.github.io/2024/12/26/2024122601/</id>
+    <link href="https://victorwong171.github.io/2024/12/26/2024122601/"/>
+    <id>https://victorwong171.github.io/2024/12/26/2024122601/</id>
     <published>2024-12-26T05:37:54.000Z</published>
     <updated>2024-12-25T21:48:32.560Z</updated>
     
@@ -114,17 +147,17 @@
     
     
     
-    <category term="基础知识" scheme="https://fatwang1.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    <category term="基础知识" scheme="https://victorwong171.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     
     
-    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    <category term="golang" scheme="https://victorwong171.github.io/tags/golang/"/>
     
   </entry>
   
   <entry>
     <title>struct 内嵌 interface</title>
-    <link href="https://fatwang1.github.io/2024/12/26/2024122600/"/>
-    <id>https://fatwang1.github.io/2024/12/26/2024122600/</id>
+    <link href="https://victorwong171.github.io/2024/12/26/2024122600/"/>
+    <id>https://victorwong171.github.io/2024/12/26/2024122600/</id>
     <published>2024-12-26T05:23:13.000Z</published>
     <updated>2024-12-25T21:35:46.827Z</updated>
     
@@ -139,17 +172,17 @@
     
     
     
-    <category term="基础知识" scheme="https://fatwang1.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    <category term="基础知识" scheme="https://victorwong171.github.io/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
     
     
-    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    <category term="golang" scheme="https://victorwong171.github.io/tags/golang/"/>
     
   </entry>
   
   <entry>
     <title>网易云音乐私有文件调整</title>
-    <link href="https://fatwang1.github.io/2024/12/25/2024122500/"/>
-    <id>https://fatwang1.github.io/2024/12/25/2024122500/</id>
+    <link href="https://victorwong171.github.io/2024/12/25/2024122500/"/>
+    <id>https://victorwong171.github.io/2024/12/25/2024122500/</id>
     <published>2024-12-25T09:00:00.000Z</published>
     <updated>2024-12-25T21:24:19.878Z</updated>
     
@@ -166,17 +199,17 @@
     
     
     
-    <category term="异常" scheme="https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
+    <category term="异常" scheme="https://victorwong171.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
     
     
-    <category term="ncm" scheme="https://fatwang1.github.io/tags/ncm/"/>
+    <category term="ncm" scheme="https://victorwong171.github.io/tags/ncm/"/>
     
   </entry>
   
   <entry>
     <title>channel</title>
-    <link href="https://fatwang1.github.io/2024/12/20/2024121901/"/>
-    <id>https://fatwang1.github.io/2024/12/20/2024121901/</id>
+    <link href="https://victorwong171.github.io/2024/12/20/2024121901/"/>
+    <id>https://victorwong171.github.io/2024/12/20/2024121901/</id>
     <published>2024-12-19T20:22:48.000Z</published>
     <updated>2025-08-16T12:07:50.956Z</updated>
     
@@ -194,19 +227,19 @@
     
     
     
-    <category term="面试题" scheme="https://fatwang1.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="面试题" scheme="https://victorwong171.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
     
-    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    <category term="golang" scheme="https://victorwong171.github.io/tags/golang/"/>
     
-    <category term="channel" scheme="https://fatwang1.github.io/tags/channel/"/>
+    <category term="channel" scheme="https://victorwong171.github.io/tags/channel/"/>
     
   </entry>
   
   <entry>
     <title>golang GMP模型</title>
-    <link href="https://fatwang1.github.io/2024/12/20/2024121900/"/>
-    <id>https://fatwang1.github.io/2024/12/20/2024121900/</id>
+    <link href="https://victorwong171.github.io/2024/12/20/2024121900/"/>
+    <id>https://victorwong171.github.io/2024/12/20/2024121900/</id>
     <published>2024-12-19T18:53:58.000Z</published>
     <updated>2025-08-04T18:26:14.848Z</updated>
     
@@ -224,19 +257,19 @@
     
     
     
-    <category term="面试题" scheme="https://fatwang1.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="面试题" scheme="https://victorwong171.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
     
-    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    <category term="golang" scheme="https://victorwong171.github.io/tags/golang/"/>
     
-    <category term="GMP模型" scheme="https://fatwang1.github.io/tags/GMP%E6%A8%A1%E5%9E%8B/"/>
+    <category term="GMP模型" scheme="https://victorwong171.github.io/tags/GMP%E6%A8%A1%E5%9E%8B/"/>
     
   </entry>
   
   <entry>
     <title>红黑树</title>
-    <link href="https://fatwang1.github.io/2024/12/17/2024121700/"/>
-    <id>https://fatwang1.github.io/2024/12/17/2024121700/</id>
+    <link href="https://victorwong171.github.io/2024/12/17/2024121700/"/>
+    <id>https://victorwong171.github.io/2024/12/17/2024121700/</id>
     <published>2024-12-17T10:33:19.000Z</published>
     <updated>2024-12-25T01:22:25.525Z</updated>
     
@@ -253,17 +286,17 @@
     
     
     
-    <category term="wip" scheme="https://fatwang1.github.io/categories/wip/"/>
+    <category term="wip" scheme="https://victorwong171.github.io/categories/wip/"/>
     
     
-    <category term="数据结构" scheme="https://fatwang1.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    <category term="数据结构" scheme="https://victorwong171.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
   <entry>
     <title>数据库八股</title>
-    <link href="https://fatwang1.github.io/2024/11/26/2024112600/"/>
-    <id>https://fatwang1.github.io/2024/11/26/2024112600/</id>
+    <link href="https://victorwong171.github.io/2024/11/26/2024112600/"/>
+    <id>https://victorwong171.github.io/2024/11/26/2024112600/</id>
     <published>2024-11-26T09:47:41.000Z</published>
     <updated>2025-02-12T02:49:08.744Z</updated>
     
@@ -281,19 +314,19 @@
     
     
     
-    <category term="面试题" scheme="https://fatwang1.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="面试题" scheme="https://victorwong171.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
     
-    <category term="数据库" scheme="https://fatwang1.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="数据库" scheme="https://victorwong171.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-    <category term="mysql" scheme="https://fatwang1.github.io/tags/mysql/"/>
+    <category term="mysql" scheme="https://victorwong171.github.io/tags/mysql/"/>
     
   </entry>
   
   <entry>
     <title>golang gc</title>
-    <link href="https://fatwang1.github.io/2024/09/27/2024092700/"/>
-    <id>https://fatwang1.github.io/2024/09/27/2024092700/</id>
+    <link href="https://victorwong171.github.io/2024/09/27/2024092700/"/>
+    <id>https://victorwong171.github.io/2024/09/27/2024092700/</id>
     <published>2024-09-27T08:00:01.000Z</published>
     <updated>2025-02-12T02:48:21.892Z</updated>
     
@@ -307,19 +340,19 @@
     
     
     
-    <category term="面试题" scheme="https://fatwang1.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="面试题" scheme="https://victorwong171.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
     
-    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    <category term="golang" scheme="https://victorwong171.github.io/tags/golang/"/>
     
-    <category term="gc" scheme="https://fatwang1.github.io/tags/gc/"/>
+    <category term="gc" scheme="https://victorwong171.github.io/tags/gc/"/>
     
   </entry>
   
   <entry>
     <title>golang map</title>
-    <link href="https://fatwang1.github.io/2024/09/26/2024092601/"/>
-    <id>https://fatwang1.github.io/2024/09/26/2024092601/</id>
+    <link href="https://victorwong171.github.io/2024/09/26/2024092601/"/>
+    <id>https://victorwong171.github.io/2024/09/26/2024092601/</id>
     <published>2024-09-26T10:58:27.000Z</published>
     <updated>2025-08-05T18:53:25.395Z</updated>
     
@@ -336,21 +369,21 @@
     
     
     
-    <category term="面试题" scheme="https://fatwang1.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="面试题" scheme="https://victorwong171.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
     
-    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    <category term="golang" scheme="https://victorwong171.github.io/tags/golang/"/>
     
-    <category term="hash" scheme="https://fatwang1.github.io/tags/hash/"/>
+    <category term="hash" scheme="https://victorwong171.github.io/tags/hash/"/>
     
-    <category term="map" scheme="https://fatwang1.github.io/tags/map/"/>
+    <category term="map" scheme="https://victorwong171.github.io/tags/map/"/>
     
   </entry>
   
   <entry>
     <title>hexo 图片路径生成问题</title>
-    <link href="https://fatwang1.github.io/2024/09/26/2024092600/"/>
-    <id>https://fatwang1.github.io/2024/09/26/2024092600/</id>
+    <link href="https://victorwong171.github.io/2024/09/26/2024092600/"/>
+    <id>https://victorwong171.github.io/2024/09/26/2024092600/</id>
     <published>2024-09-26T06:17:04.000Z</published>
     <updated>2024-09-25T22:29:22.249Z</updated>
     
@@ -365,17 +398,17 @@
     
     
     
-    <category term="异常" scheme="https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
+    <category term="异常" scheme="https://victorwong171.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
     
     
-    <category term="hexo" scheme="https://fatwang1.github.io/tags/hexo/"/>
+    <category term="hexo" scheme="https://victorwong171.github.io/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>想写的角色</title>
-    <link href="https://fatwang1.github.io/2024/09/12/2024091200/"/>
-    <id>https://fatwang1.github.io/2024/09/12/2024091200/</id>
+    <link href="https://victorwong171.github.io/2024/09/12/2024091200/"/>
+    <id>https://victorwong171.github.io/2024/09/12/2024091200/</id>
     <published>2024-09-12T01:07:47.000Z</published>
     <updated>2024-12-28T21:52:16.090Z</updated>
     
@@ -392,15 +425,15 @@
     
     
     
-    <category term="idea snapshot" scheme="https://fatwang1.github.io/categories/idea-snapshot/"/>
+    <category term="idea snapshot" scheme="https://victorwong171.github.io/categories/idea-snapshot/"/>
     
     
   </entry>
   
   <entry>
     <title>goroutine 排队、调度</title>
-    <link href="https://fatwang1.github.io/2024/06/26/2024062500/"/>
-    <id>https://fatwang1.github.io/2024/06/26/2024062500/</id>
+    <link href="https://victorwong171.github.io/2024/06/26/2024062500/"/>
+    <id>https://victorwong171.github.io/2024/06/26/2024062500/</id>
     <published>2024-06-25T20:04:43.000Z</published>
     <updated>2024-06-25T12:59:32.038Z</updated>
     
@@ -415,19 +448,19 @@
     
     
     
-    <category term="面试题" scheme="https://fatwang1.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="面试题" scheme="https://victorwong171.github.io/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
     
-    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    <category term="golang" scheme="https://victorwong171.github.io/tags/golang/"/>
     
-    <category term="groutine" scheme="https://fatwang1.github.io/tags/groutine/"/>
+    <category term="groutine" scheme="https://victorwong171.github.io/tags/groutine/"/>
     
   </entry>
   
   <entry>
     <title>浏览器与服务器实时通信</title>
-    <link href="https://fatwang1.github.io/2024/06/04/2024060400/"/>
-    <id>https://fatwang1.github.io/2024/06/04/2024060400/</id>
+    <link href="https://victorwong171.github.io/2024/06/04/2024060400/"/>
+    <id>https://victorwong171.github.io/2024/06/04/2024060400/</id>
     <published>2024-06-04T09:23:43.000Z</published>
     <updated>2024-06-04T05:19:50.210Z</updated>
     
@@ -443,25 +476,25 @@
     
     
     
-    <category term="技术方案" scheme="https://fatwang1.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/"/>
+    <category term="技术方案" scheme="https://victorwong171.github.io/categories/%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/"/>
     
     
-    <category term="WebSocket" scheme="https://fatwang1.github.io/tags/WebSocket/"/>
+    <category term="WebSocket" scheme="https://victorwong171.github.io/tags/WebSocket/"/>
     
-    <category term="SSE" scheme="https://fatwang1.github.io/tags/SSE/"/>
+    <category term="SSE" scheme="https://victorwong171.github.io/tags/SSE/"/>
     
-    <category term="WebTransport" scheme="https://fatwang1.github.io/tags/WebTransport/"/>
+    <category term="WebTransport" scheme="https://victorwong171.github.io/tags/WebTransport/"/>
     
-    <category term="Long-Polling" scheme="https://fatwang1.github.io/tags/Long-Polling/"/>
+    <category term="Long-Polling" scheme="https://victorwong171.github.io/tags/Long-Polling/"/>
     
-    <category term="WebRTC" scheme="https://fatwang1.github.io/tags/WebRTC/"/>
+    <category term="WebRTC" scheme="https://victorwong171.github.io/tags/WebRTC/"/>
     
   </entry>
   
   <entry>
     <title>terraform实践</title>
-    <link href="https://fatwang1.github.io/2024/05/30/2024053001/"/>
-    <id>https://fatwang1.github.io/2024/05/30/2024053001/</id>
+    <link href="https://victorwong171.github.io/2024/05/30/2024053001/"/>
+    <id>https://victorwong171.github.io/2024/05/30/2024053001/</id>
     <published>2024-05-30T09:52:55.000Z</published>
     <updated>2024-12-25T01:22:57.960Z</updated>
     
@@ -478,19 +511,19 @@
     
     
     
-    <category term="wip" scheme="https://fatwang1.github.io/categories/wip/"/>
+    <category term="wip" scheme="https://victorwong171.github.io/categories/wip/"/>
     
     
-    <category term="devops" scheme="https://fatwang1.github.io/tags/devops/"/>
+    <category term="devops" scheme="https://victorwong171.github.io/tags/devops/"/>
     
-    <category term="terraform" scheme="https://fatwang1.github.io/tags/terraform/"/>
+    <category term="terraform" scheme="https://victorwong171.github.io/tags/terraform/"/>
     
   </entry>
   
   <entry>
     <title>在github发布自己的依赖</title>
-    <link href="https://fatwang1.github.io/2024/05/30/2024053000/"/>
-    <id>https://fatwang1.github.io/2024/05/30/2024053000/</id>
+    <link href="https://victorwong171.github.io/2024/05/30/2024053000/"/>
+    <id>https://victorwong171.github.io/2024/05/30/2024053000/</id>
     <published>2024-05-30T09:27:10.000Z</published>
     <updated>2024-05-30T01:43:41.448Z</updated>
     
@@ -505,21 +538,21 @@
     
     
     
-    <category term="教程" scheme="https://fatwang1.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://victorwong171.github.io/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-    <category term="github" scheme="https://fatwang1.github.io/tags/github/"/>
+    <category term="github" scheme="https://victorwong171.github.io/tags/github/"/>
     
-    <category term="golang" scheme="https://fatwang1.github.io/tags/golang/"/>
+    <category term="golang" scheme="https://victorwong171.github.io/tags/golang/"/>
     
-    <category term="go modules" scheme="https://fatwang1.github.io/tags/go-modules/"/>
+    <category term="go modules" scheme="https://victorwong171.github.io/tags/go-modules/"/>
     
   </entry>
   
   <entry>
     <title>linux串口通信 接收信息不完整 读取不全</title>
-    <link href="https://fatwang1.github.io/2024/05/17/2024051602/"/>
-    <id>https://fatwang1.github.io/2024/05/17/2024051602/</id>
+    <link href="https://victorwong171.github.io/2024/05/17/2024051602/"/>
+    <id>https://victorwong171.github.io/2024/05/17/2024051602/</id>
     <published>2024-05-16T17:50:10.000Z</published>
     <updated>2024-05-16T09:50:56.877Z</updated>
     
@@ -534,43 +567,14 @@
     
     
     
-    <category term="异常" scheme="https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
+    <category term="异常" scheme="https://victorwong171.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
     
     
-    <category term="linux" scheme="https://fatwang1.github.io/tags/linux/"/>
+    <category term="linux" scheme="https://victorwong171.github.io/tags/linux/"/>
     
-    <category term="串口通信" scheme="https://fatwang1.github.io/tags/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/"/>
+    <category term="串口通信" scheme="https://victorwong171.github.io/tags/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/"/>
     
-    <category term="c++" scheme="https://fatwang1.github.io/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sed: -e expression #1, char 0: no previous regular expression</title>
-    <link href="https://fatwang1.github.io/2024/05/16/2024051601/"/>
-    <id>https://fatwang1.github.io/2024/05/16/2024051601/</id>
-    <published>2024-05-16T15:17:10.000Z</published>
-    <updated>2024-05-16T09:51:02.885Z</updated>
-    
-    <content type="html"><![CDATA[<p>执行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sed -i -e <span class="hljs-string">&quot;s/<span class="hljs-variable">$ori</span>/<span class="hljs-variable">$curr</span>/g&quot;</span> <span class="hljs-variable">$CONF</span><br></code></pre></td></tr></table></figure><p>报错 <code>sed: -e expression #1, char 0: no previous regular expression</code></p><p>是因为 <code>$ori</code> 为空</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;执行&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;</summary>
-      
-    
-    
-    
-    <category term="异常" scheme="https://fatwang1.github.io/categories/%E5%BC%82%E5%B8%B8/"/>
-    
-    
-    <category term="sed" scheme="https://fatwang1.github.io/tags/sed/"/>
-    
-    <category term="linux" scheme="https://fatwang1.github.io/tags/linux/"/>
-    
-    <category term="shell" scheme="https://fatwang1.github.io/tags/shell/"/>
+    <category term="c++" scheme="https://victorwong171.github.io/tags/c/"/>
     
   </entry>
   

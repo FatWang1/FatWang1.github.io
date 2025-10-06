@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>标准库context:协作式goroutine管理工具</title>
+    <link href="/2025/09/21/2025092001/"/>
+    <url>/2025/09/21/2025092001/</url>
+    
+    <content type="html"><![CDATA[<ul><li><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2></li></ul><p>在goroutine的应用中，有些经典场景如：<strong>超时控制、派生goroutine管理、通用上下文传递</strong>等，因此官方在1.7版本引入了context库来提供便捷的解决方案。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>标准库</category>
+      
+      <category>面试题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>go</tag>
+      
+      <tag>context</tag>
+      
+      <tag>goroutine</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>defer的执行逻辑</title>
     <link href="/2025/09/21/2025092000/"/>
     <url>/2025/09/21/2025092000/</url>
